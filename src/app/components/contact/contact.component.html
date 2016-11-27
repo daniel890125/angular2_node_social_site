@@ -1,0 +1,53 @@
+<div class="modal fade bs-example-modal-sm" id="sendMessage-modal" tabindex="-1" role="dialog" aria-labelledby="formContent">
+    <div class="modal-dialog" >
+        <form [formGroup]="contactform" novalidate  >
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Kontakt</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="sel1">Wähle sie den Grund ihres Kontaktes:</label>
+                                <select class="form-control" id="sel1" formControlName="grund">
+                                            <option>Allgemein</option>
+                                    <option>Werbung inserieren</option>
+                                    <option>Technik</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name*:</label>
+                                <input type="text" class="form-control" id="name" formControlName="name">
+                                <span style="color:red" *ngIf="contactform.controls.name.touched && !contactform.controls.name.valid"> Required.</span>
+                            </div>
+
+                                <label for="email">E-Mail*:</label>
+                                <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email" formControlName="email" required>
+                                <span style="color:red" *ngIf="contactform.controls.email.touched && !contactform.controls.email.valid"> Ungültige E-Mail Adresse.</span>
+                                <!--<span  *ngIf="contactform.controls.email.touched && !contactform.controls.email.valid"> <span style="color:blue" *ngIf="!contactform.controls.email.valid">E-Mail ist ein Pflichtfeld.</span> <span style="color:red" *ngIf="!contactform.controls.email.errors">E-Mail ist ungültig</span> </span>-->
+
+                            <div class="form-group">
+                                <label for="comment">Nachricht*:</label>
+                                <textarea class="form-control" rows="5" id="comment" formControlName="nachricht" required></textarea>
+                                <span style="color:red" *ngIf="contactform.controls.nachricht.touched && !contactform.controls.nachricht.valid"> Required.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Schließen
+                    </button>
+                    <button type="button" class="btn btn-primary" (click)="sendMessage()" [disabled]="!contactform.valid" >
+                    Senden
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="modal" id="userrole_modal" tabindex="-1" role="dialog" aria-labelledby="ImageInsert" >
+    <div class="modal-dialog" >
+        <form id="roleModal" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">User Role Settings</h4>
+                </div>
+
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><span>Email id</span></td>
+                                <td>
+                                    <input type="email" class="form-control" name='email'  [(ngModel)]="email" [ngModelOptions]="{standalone: true}" (blur)='searchId()' required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>Name</span></td>
+                                <td>
+                                    <input type="text" class="form-control" name='firstName'  [(ngModel)]="nameMain"  [ngModelOptions]="{standalone: true}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span>Role</span></td>
+                                <td>
+                                    <select id="role" class="form-control"  [(ngModel)]="role" [ngModelOptions]="{standalone: true}" >
+                                        <option value=0>Visitor</option>
+                                        <option value=1>Company</option>
+                                        <option value=2>Admin</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="nav navbar-nav">
+                            {{footerStatus}}
+                        </div>
+                        <div class="form navbar-form navbar-right">
+                            <button type="button" name="update" (click)="update()" class="btn btn-info">
+                                {{button}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+
+<div class="panel-footer" >
+<div style="margin-bottom:40px;">
+  <button type="button" class=" btn btn-default"  id="btncomment" (click)="showComment2=true; showComment=false;">
+  <span class="glyphicon glyphicon-question-sign"></span>
+  </button>
+
+
+    <button type="button" class=" btn btn-default"  id="btncomment" (click)="showComment=true; showComment2=false;">
+        <span class="glyphicon glyphicon-comment"></span>
+        <small *ngFor="let i of countCommentSum | myFilter : rec._id"> {{'+' + i.count}} </small>
+    </button>
+    <button type="button" class=" btn btn-default" id="btncomment" (click)="addLike()" >
+        <img src="/assets/img/like.png" height="20" *ngIf="status!='like'"/>
+        <img src="/assets/img/like-black.png" height="20" *ngIf="status=='like'"/>
+        <small>{{'+' + countLikeSum}}</small>
+    </button>
+    <button type="button" class=" btn btn-default" id="btncomment" (click)="addDislike()" >
+        <img src="/assets/img/dislike.png" height="20" *ngIf="status!='dislike'"/>
+        <img src="/assets/img/dislike-black.png" height="20" *ngIf="status=='dislike'"/>
+        <small>{{'-' + countDislikeSum}}</small>
+    </button>
+
+    <a *ngIf="!rec.added" href="{{rec.productUrl}}" target="_blank" >
+        <button  type="button" class=" btn btn-default" id="btnMore" style="float:right;">Anzeigen</button>
+    </a>
+
+
+
+    <a *ngIf="rec.added" (click)="addToCart(rec)"  target="_blank">
+      <button type="button" class=" btn btn-default" id="btnAddToCart" style="float:right;">Hinzufügen</button>
+  </a>
+  <input *ngIf="rec.added" type="number"  style="float:right; width:50px;height:34px;"/>
+    <a href="https://maps.google.com?daddr={{rec.address}}+{{rec.nr}}+{{rec.postcode}}+{{rec.city}}" target="_blank">
+        <button type="button" class="btn btn-default" id="btnmap" style="float:right;">
+            <span class="glyphicon glyphicon-map-marker"></span>
+        </button>
+    </a>
+</div>
+    <!-- <div class="input-placeholder" (click)="showComment?showComment=false:showComment=true; showComment2=false;" >
+        Kommentar hinzufügen
+</div> -->
+    <div class="sl-comment" *ngIf="showComment" id="{{rec._id}}" >
+    <!-- <div *ngIf="alive"> -->
+        <div ></div>
+        <div style="margin-left:55px;" class="star" >Rating :  {{rate}}</div>
+        <div style="margin-left:55px;" >
+            <rating [starCount]='5' (rate)="rateVal($event)" [rating]="rate" ></rating>
+        </div>
+        <img class="[ img-circle pull-left ]" *ngIf="id" src="/user/pid/{{id}}" style="height:50px; width:50px;" />
+        <img class="[ img-circle pull-left ]"  *ngIf="!id" src="/assets/fonts/male.png" style="height:50px; width:50px;" />
+        <div class = "sl-textarea">
+            <textarea rows="4" placeholder="Maximal 300 Wörter" [disabled]="!alive" maxlength="300" [(ngModel)]="textValue" [ngModelOptions]="{standalone: true}">
+
+            </textarea>
+
+            <!-- <div id="textarea" contenteditable="true" [(contenteditableModel)]='textValue' >
+                <img src='/user/pid/{{id}}' style="width:45px" id="myimg" />
+                I look like a textarea
+            </div> -->
+            <button type="button"  class="btn btn-success" style="margin-top:10px;" [disabled]="!alive"  (click)="addComments()">
+                Hinzufügen
+            </button>
+
+            <button type="reset" class="[ btn btn-default ]" (click)="hideComment()" style=" margin-top:10px;">
+            Schließen</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <!-- </div> -->
+
+      <div class="sl-comment" *ngIf="showComment2" id="{{rec._id}}" >
+
+        <h5><i class="glyphicon glyphicon-search"></i> BESCHREIBUNG</h5>
+        <p>{{rec.description}}</p>
+        <hr>
+        <h5><i class="glyphicon glyphicon-star-empty "></i>LEISTUNGSBESTANDTEIL</h5>
+        <p>{{rec.leistung}}</p>
+        <hr>
+        <h5><i class="glyphicon glyphicon-time"></i> ZEIT</h5>
+        <p>{{rec.dauer}}</p>
+        <hr>
+        <h5><i class="glyphicon glyphicon-user"></i> ANZAHL PERSONEN</h5>
+        <p>{{rec.amountProduct}}</p>
+        <hr>
+
+
+        <button type="reset" class="[ btn btn-default ]" (click)="hideDetails()" style=" margin-top:10px;">
+        Schließen</button>
+
+        <div class="clearfix"></div>
+
+      </div>
+    <commentall [comments]='comments' [showComment]='showComment' [Id]="rec._id"></commentall>

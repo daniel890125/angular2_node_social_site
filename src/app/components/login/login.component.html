@@ -1,0 +1,94 @@
+<ul class="nav navbar-nav navbar-right"  >
+  <li class="dropdown" *ngIf="shoppingCartService.cartItems.length>0">
+        <a href="#_own" style="outline:none;"  (click)="shoppingCartService.showCart=true" class="dropdown-toggle" data-toggle="dropdown"><img  src="/assets/img/cart-icon.png" style="width:90px;margin-top:-10px" /> <span class="badge" style="margin-top: -26px;margin-left: -37px;background-color: skyblue">{{shoppingCartService.cartItems.length}}</span> </a>
+    </li>
+    <li class="dropdown"  *ngIf="isAlive" >
+        <a id="navLogin"  href="#" class="dropdown-toggle" data-toggle="dropdown">
+<img  style="height:30px; width:30px;" src="user/pid/{{Id}}"/>
+
+            <span  style="padding-right:10px;"></span>Logged in <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+
+
+
+            <li >
+                <span class="btn btn-default" style="border:0;" > <a class="btn btn-default" href="#/profile"  >View Profile</a> </span>
+            </li>
+
+            <li *ngIf="role >= 2">
+                <span class="btn btn-default" style="border:0" > <a class="btn btn-default" href="#" data-toggle="modal" data-target="#userrole_modal" >Role Settings</a> </span>
+            </li>
+            <li>
+                <a href="#"></a>
+            </li>
+            <li role="separator" class="divider"></li>
+
+            <li (click)="logout(true)">
+                <a href="#">Logout</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown"  *ngIf="!isAlive">
+        <a class="dropdown-toggle"  href="#" data-toggle="dropdown" id="navLogin">Login <span class="caret" id="caret"></span></a>
+        <div class="dropdown-menu" *ngIf='!display'>
+            <form class="form-signin" >
+                <div style="color:red; text-align: center;">
+                    {{invalid}}
+                </div>
+                <div class="social-box">
+
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <a href="/auth/twitter" class="btn btn-info btn-block"> <i class="icon-twitter"></i> Login mit Twitter </a>
+                        </div>
+                    </div> -->
+
+                    <div class="row">
+                        <div class="col-md-12" style="padding-top:20px;">
+                            <a href="/auth/google" class="btn btn-danger btn-block" > <i class="icon-google-plus"></i> Login mit Google+ </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="main">
+                    <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="Email" class="form-control" style="margin-bottom:10px;" required />
+
+                    <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Password" class="form-control" required />
+
+                    <a (click) = "getPassword()">Passwort vergessen?</a>
+                        <forgotpass #editModal>{{bindModal(editModal)}}</forgotpass>
+                </div>
+                <div class="login-footer">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 pull-right">
+                            <button type="button" class="btn btn-large btn-danger pull-right" (click)="signIn()" >
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </li>
+
+    <li class="dropdown" *ngIf="!isAlive">
+        <a class="dropdown-toggle"  href="#" data-toggle="dropdown" id="navLogin">Registrieren<span class="caret"></span></a>
+        <div class="dropdown-menu" style="width:350px; " >
+            <!--Signup controller -->
+            <signup></signup>
+        </div>
+    </li>
+    <li>
+        <a data-toggle="modal" data-target=".bs-example-modal-sm"  href="#" ><img src="/assets/fonts/contact.png"><span style="color:#933EC5;"> Kontakt</span></a>
+    </li>
+
+    <li class="active"  style="margin-top:10px; opacity: 0.9;" >
+ <button  type="button" class="btn btn-default " [disabled]="!isAlive" (click)="addRecordsService.addRecord=true"  >
+            <span class="glyphicon glyphicon-send"></span> Angebot hinzufügen
+        </button>
+              <a class="tooltips" *ngIf="!isAlive" ><span >Bitte anmelden!</span></a>
+    </li>
+   <contact></contact>
+
+    <role></role>
+</ul>

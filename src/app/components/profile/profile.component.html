@@ -1,0 +1,257 @@
+<div class="container" style="margin-top:20px;">
+  <div class="row" >
+
+    <div class="col-sm-3">
+      <div class="user-profile__avatar shadow-effect text-center">
+        <div class="imgWr">
+          <img class="img-responsive center-block "src='user/pid/{{Id}}'>
+          <span class="imgDesc" *ngIf="!isVisiting()">
+            <label for="upload">
+              <span class="profileImg glyphicon glyphicon-camera" aria-hidden="true"></span>
+              <input type="file" id="upload" style="display:none" (change)="onFileSelect($event)" >
+            </label>
+            <span class=" profileImg glyphicon glyphicon-trash"  (click)="profileImageRemove()"></span>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="!isVisiting()">
+          <a style="width:100%;" class="btn btn-success">Add Friendlist</a>
+      </div>
+      <div style="margin-top:80px; margin-bottom:150px;" *ngIf="!isVisiting()" (click)="login()">
+          <button style="width:100%;" class="btn btn-default">Send Message</button>
+      </div>
+      <!-- <a href='#' onclick="FacebookInviteFriends();">Invite</a> -->
+    </div>
+
+    <div class="col-sm-8" style="margin-top:10px; " >
+      <!-- User name -->
+      <form [formGroup]="editform">
+        <div class="row">
+          <div *ngIf="!isNameEdit">
+            <div class="col-sm-4"><h3 class="user-profile__title">{{Name}}</h3></div>
+            <div class="col-sm-8"><div (click)="isNameEdit=true" class="edit-icon h3-style" *ngIf="!isVisiting()"></div></div>
+          </div>
+          <div *ngIf="isNameEdit">
+            <div class="col-sm-4"><input class="form-control" formControlName="Name" name="Name" placeholder="Name goes here..." type="text" required/></div>
+            <div class="col-sm-8"><div (click)="saveProfile('name')" class="save-icon"></div></div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div *ngIf="!isJobEdit">
+            <div class="col-sm-4"><h4 class="user-profile__title">{{Job}}</h4></div>
+            <div class="col-sm-8"><div (click)="isJobEdit=true" class="edit-icon h3-style" *ngIf="!isVisiting()"></div></div>
+          </div>
+          <div *ngIf="isJobEdit">
+            <div class="col-sm-4"><input class="form-control" formControlName="Job" name="Job" placeholder="Job goes here..." type="text" required/></div>
+            <div class="col-sm-8"><div (click)="saveProfile('job')" class="save-icon"></div></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div *ngIf="!isAgeEdit">
+            <div class="col-sm-4"><h4 class="user-profile__title">{{Age}}</h4></div>
+            <div class="col-sm-8"><div (click)="isAgeEdit=true" class="edit-icon h3-style" *ngIf="!isVisiting()"></div></div>
+          </div>
+          <div *ngIf="isAgeEdit">
+            <div class="col-sm-4"><input class="form-control" formControlName="Age" name="Age" placeholder="Age goes here..." type="text" required/></div>
+            <div class="col-sm-8"><div (click)="saveProfile('age')" class="save-icon"></div></div>
+          </div>
+        </div>
+        <!-- User description -->
+        <div class="row">
+          <div *ngIf="!isDescriptionEdit">
+            <br>
+            <div class="col-sm-4"><p class="user-profile__title">{{Description}}</p></div>
+            <div class="col-sm-8"><div (click)="isDescriptionEdit=true" class="edit-icon h3-style" *ngIf="!isVisiting()"></div></div>
+            <br>
+          </div>
+          <div *ngIf="isDescriptionEdit">
+            <br>
+            <div class="col-sm-8"><textarea class="form-control" formControlName="Description" name="Description" placeholder="Description goes here..."></textarea></div>
+            <div class="col-sm-4"><div (click)="saveProfile('description')" class="save-icon"></div></div>
+            <br>
+          </div>
+        </div>
+
+        <div class="container" style="margin-top:20px; float: left;" *ngFor="let v of visiterlist">
+          <h4>Visitors</h4>
+          <img src={{v.profileImage}} class="img-circle" alt={{v.local.nameMain}} width="50" height="50" (click)="showFriendProfile(v._id)">
+          <br>
+          <span>{{v.local.nameMain}}</span>
+        </div>
+      </form>
+    </div>
+    <br/>
+
+    <div class="col-sm-12">
+      <div class="user-profile__tabs">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <hr>
+          <li role="presentation" class="active">
+            <a href="#user-profile__portfolio" aria-controls="user-profile__portfolio" role="tab" data-toggle="tab" aria-expanded="true" class="head glyphicon glyphicon-th"> Start</a>
+          </li>
+
+          <li role="presentation" class="">
+            <a href="#user-profile__friends" aria-controls="user-profile__friends" role="tab" data-toggle="tab" aria-expanded="false" class="head glyphicon glyphicon-user"> Freunde</a>
+          </li>
+
+          <li role="presentation" class="" *ngIf="!isVisiting()">
+            <a href="#user-profile__settings" aria-controls="user-profile__settings" role="tab" data-toggle="tab" aria-expanded="false" class="head glyphicon glyphicon-cog"> Settings</a>
+          </li>
+          <li role="presentation" class="" *ngIf="!isVisiting()"><!--*ngIf="ownerlogged"-->
+            <a href="#user-profile__calendar" aria-controls="user-profile__calendar" role="tab" data-toggle="tab" aria-expanded="false" class="head glyphicon glyphicon-calendar"> Calendar</a>
+          </li>
+          <li role="presentation" class="" *ngIf="!isVisiting()"><!--*ngIf="ownerlogged"-->
+            <a href="#user-profile__card" aria-controls="user-profile__card" role="tab" data-toggle="tab" aria-expanded="false" class="head glyphicon glyphicon-credit-card"> Konto</a>
+          </li>
+
+        </ul>
+        <hr>
+
+            <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane fade active in" id="user-profile__portfolio">
+            <div class="row">
+
+              	<!-- <div class="col-md-6"> -->
+
+              <div class="glyphicon glyphicon-star-empty" style="margin-bottom:50px;"> Wish list</div><br>
+
+              <expdays [expdays]='wishlist' [userId]='userId' [alive]='true' (refreshPage)='loadRelatedInfo()' (moreClicked)='loadMore($event)' [role]="1" [admin]='adminTab' [isWishList]='true' (removeClicked)='removeWishList($event)'></expdays>
+
+              <div class="col-md-6 float-left">
+                <div class="col-md-10" style="float: right;">
+                <div class="glyphicon glyphicon-thumbs-up" style="margin-bottom:50px; "> Friends also like</div><br>
+                <div *ngFor="let u of userlist">
+                  <div>
+                    <div class="row" *ngIf="u._id!=Id">
+                      <div class="col-md-3 wrap">
+                        <img src={{u.profileImage}} class="img-circle" alt="Cinque Terre" width="50" height
+                        ="50">
+                        <br><span>{{u.local.nameMain}}</span><br>
+                      </div>
+                      <div *ngIf="!isFriend(u._id)" class="col-md-9 col-md-push-3 vertical-center"><i class="glyphicon glyphicon-star" (click)="changeFriendList(u._id)"></i></div>
+                      <div *ngIf="isFriend(u._id)" class="col-md-9 col-md-push-3 vertical-center"><i class="glyphicon glyphicon-star icon-active" (click)="changeFriendList(u._id)"></i></div>
+                    </div>
+                    <hr style="margin-top:10px; margin-bottom:10px;">
+                  </div>
+                </div>
+                <hr style="margin-top:10px; margin-bottom:10px;">
+              </div>
+              </div>
+            </div>   <!-- row -->
+          </div> <!-- / .tab-pane -->
+
+          <div role="tabpanel" class="tab-pane fade in" id="user-profile__friends">
+            <div class="row">
+              <div class="col-lg-6">
+                <form [formGroup]="searchform">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." name="MatchString" formControlName="MatchString">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" (click)="search()">Search</button>
+                    </span>
+                   
+                  </div><!-- /input-group -->
+                </form>
+              </div><!-- /.col-lg-6 -->
+            </div>
+            <div class="row">
+
+              <div class="section ourTeam">
+
+              	<div class="row">
+                  <div *ngFor="let f of searchedlist">
+                		<div class="col-xs-6 col-sm-4 col-md-3 i">
+                			<div class="c text-center">
+                				<div class="wrap">
+                          <div>
+                  					<img src={{f.profileImage}} alt="#" style="height:100px;" class="img-responsive" (click)="showFriendProfile(f._id)">
+                  					<div class="info">
+                              <span (click)="showFriendProfile(f._id)">
+                    						<h3 class="name">{{f.local.nameMain}}</h3>
+                    						<h4 class="position">{{f.job}}</h4>
+                              </span>
+                              <span>
+                                <button class="btn btn-default" type="button" (click)="changeFriendList(f._id)" style="float: none;">Delete</button>
+                              </span> 
+                  					</div>                         
+                          </div>
+                				</div>
+
+                			</div>
+                    </div>
+              		</div>
+              		<!-- <div class="col-xs-6 col-sm-4 col-md-3 i">
+              			<div class="c text-center">
+              				<div class="wrap">
+              					<img src="http://fashion-interview.com/wp-content/uploads/2015/10/plus-size-model-angelina-kirsch-topmodel-interview-fragen-trends-mode-welt-international-1030x515.jpg" alt="#" style="height:100px;" class="img-responsive">
+              					<div class="info">
+              						<h3 class="name">Elizabeth Doe</h3>
+              						<h4 class="position">Marketing Specialist</h4>
+              					</div>
+              				</div>
+                      <div class="more">
+                        <div class="socials">
+                          <button><i class="glyphicon glyphicon-envelope"></i></button>
+                            <button><i class="glyphicon glyphicon-remove"></i></button>
+                        </div>
+                      </div>
+              			</div>
+              		</div>
+              		<div class="col-xs-6 col-sm-4 col-md-3 i">
+              			<div class="c text-center">
+              				<div class="wrap">
+              					<img src="https://a2ua.com/models/models-001.jpg" alt="#" style="height:100px;" class="img-responsive">
+              					<div class="info">
+              						<h3 class="name">Doug Doe</h3>
+              						<h4 class="position">Head of Support</h4>
+              					</div>
+              				</div>
+              			</div>
+              		</div>
+              		<div class="col-xs-6 col-sm-4 col-md-3 i">
+              			<div class="c text-center">
+              				<div class="wrap">
+              					<img src="https://s-media-cache-ak0.pinimg.com/originals/14/33/e9/1433e99457cf2b54b2a6975cf5cf8782.jpg" alt="#"  style="height:100px;" class="img-responsive">
+              					<div class="info">
+              						<h3 class="name">Jeccica Doe</h3>
+              						<h4 class="position">Marketing Expert</h4>
+              					</div>
+              				</div>
+              			</div>
+              		</div> -->
+              	</div>
+              </div>
+            </div> <!-- / .row -->
+          </div> <!-- / .tab-pane -->
+
+          <div role="tabpanel" class="tab-pane fade in" id="user-profile__settings">
+            <div class="row">
+              <div class="col-md-6">
+				<!--Here can be implemented the message system-->
+              <button style="width:100%;float:right;" class="btn btn-success" (click)="profileRemove()">Delete All</button>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade in" id="user-profile__card">
+            <div class="row">
+              <div class="col-md-12">
+              Konto credential here
+
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade in" id="user-profile__calendar">
+            <div class="row">
+              <div class="col-md-12">
+                <date-picker [options]="myOptions" (dateRangeChanged)="dateRangeChanged($event)"></date-picker>
+              </div>
+            </div>
+          </div>
+        </div> <!-- / .tab-content -->
+      </div>
+  </div> <!-- / .row -->
+</div>

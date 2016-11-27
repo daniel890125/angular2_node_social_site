@@ -1,0 +1,151 @@
+  <div class="col-md-6"  >
+      <div *ngIf="category_search == 'Alle Kategorien'" >
+    <hr class="hrstyle" />
+
+
+          <h5><img src="/assets/img/experiencedays.png" /><span style="color:#585858 ; padding-left:20px;">ACCESSOIRES</span></h5>
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+          <div class="col-md-6" *ngFor="let n of experiences_days_shuffle | advertise: 'Alle Kategorien'; trackBy: n?._id" >
+
+              <a  href="{{n.productUrl}}" target="_blank"  >
+              <div  class="[ panel panel-default ] panel-google-plus md" style="height:250px;">
+                  <!-- <div class="panel-recently-booked-tag">
+                      <span id="price" >{{'ab ' + n.price + ' €'}}</span>
+                  </div> -->
+                      <img id="imgiadvertise"  *ngIf="n.images[0]" src="{{n.images[0]}}" />
+
+
+                      <h6 style="position: absolute;left: 0; bottom: 0; background-color:black; font-size:15px; opacity:0.7;  margin-left:15px; color:white;"><span style="margin-left:15px;">{{'- ' + n.title}}</span></h6>
+
+              </div> </a>
+
+          </div>
+
+
+
+  <p  style=" word-break: normal; padding:10px; font-size:16px; " >
+    Smarter Experiences hilft dir, deinen Liebsten oder dir selbst ganz einfach ein einzigartiges Geschenk zu machen. Wir haben eine große Auswahl von besonderen Erlebnissen auf unserer Plattform zusammengestellt, aus denen du nach verschiedenen Kriterien das perfekte Erlebnisgeschenk herausfiltern kannst. Wir haben so viele Erlebnisse im Angebot, wie du Gründe haben kannst, nach einem zu suchen. Möchtest du einer besonderen Person mal wieder auf neue Art sagen, dass du sie liebst? Ein romantisches Abendessen bei Kerzenschein oder eine verträumte Heißluftballonreise stehen zur Auswahl. Wer auf der Suche nach dem nächsten großen Kick ist findet ihn ganz bestimmt beim Fallschirmspringen oder wenn er selbst ein Flugzeug fliegt. Du kannst die Suche über unseren intelligenten Filter deinen Wünschen anpassen oder eine Auswahl der beliebtesten Erlebnisse durchstöbern bis du das perfekte Geschenkerlebnis findest – einfacher geht es nicht!
+  </p>
+
+
+      </div>
+
+      <div *ngIf="category_search == 'Fliegen & Fallen'" style="font-family: 'Open Sans', sans-serif;">
+          <hr class="hrstyle"/>
+          <h4><img src="/assets/img/flyandfall.png" /><span style="color:#585858 ; padding-left:20px;">FLIEGEN &amp; FALLEN</span></h4>
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+          <div class="col-md-6" *ngFor="let n of experiences_days_shuffle | advertise: 'Fliegen & Fallen'; trackBy: n?._id" >
+
+              <a  href="{{n.productUrl}}" target="_blank"  >
+              <div  class="[ panel panel-default ] panel-google-plus md" style="height:250px;">
+                  <!-- <div class="panel-recently-booked-tag">
+                      <span id="price" >{{'ab ' + n.price + ' €'}}</span>
+                  </div> -->
+                      <img id="imgiadvertise"  *ngIf="n.images[0]" src="{{n.images[0]}}" />
+
+
+                      <h6 style="position: absolute;left: 0; bottom: 0; background-color:black; font-size:15px; opacity:0.7;  margin-left:15px; color:white;"><span style="margin-left:15px;">{{'- ' + n.title}}</span></h6>
+
+              </div> </a>
+
+          </div>
+
+
+          <p style=" word-break: normal; padding:10px; font-size:16px; ">
+              Flieg dich mal in einer ganz besonderen "ersten Klasse" bei einer unserer außergewöhnlichen  Flugaktivitäten mit. Die sind perfekt für alle, die das große Abenteuer in der Luft suchen.
+              Was kann das Gefühl, bei einem Landschaftsflug die schönsten Gegenden Europas zu bewundern, übertreffen? Die Welt aus der Vogelperspektive zu sehen, ob in einem majestätisch dahingleitenden Heißluftballon oder Segelflugzeug, mit ganz nostalgisch im klassischen Doppeldecker oder für das unvergleichbare Gefühl von Freiheit bei einem Gleitschirmflug: Die Menschheit träumt nun mal vom Fliegen! Wenn du die Landschaft sehen und gleichzeitig aufgeregt schreien möchtest, kannst du auch in einem Stunt-Flugzeug mitfliegen und von einem Piloten lernen, wie man Loopings und Schleifen fliegt. Auch eine tolle Idee für jemanden, mit dem du gemeinsam mal wieder richtig Schmetterlinge im Bauch erleben möchtest. Und wer eigentlich doch lieber mit beiden Beinen auf dem Boden bleibt, kann trotzdem das ganz große Gefühl erleben, wenn er in einen Flugsimulator steigt. In den voll beweglichen Simulatoren sitzt man dafür unter Anleitung selbst am Steuer und erlebt so eine völlig neue Perspektive.
+          </p>
+
+      </div>
+
+      <div *ngIf="category_search == 'Motorpower'" style="font-family: 'Open Sans', sans-serif;">
+          <hr class="hrstyle"/>
+          <h4><img src="/assets/img/drive.png" /><span style="color:#585858 ; padding-left:20px;">MOTORPOWER</span></h4>
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+
+          <p style=" word-break: normal; padding:10px; font-size:16px; ">
+              Mach einem Freund ein ganz besonders kraftvolles Geschenk und such eins unserer Fahrerlebnis-Geschenke aus. Wir bieten eine Riesenauswahl an Fahrerlebnissen für Rennsportfans, Motorradliebhaber, und Autofanatiker an. Setz jemanden hinter das Steuer der leistungsstärksten  Autos der Welt - Ferrari, Porsche, Lamborghini oder Mercedes - auf einer der spannendsten Rennstrecken der Welt. Der ganze Nervenkitzel eines Formel1-Rennens lässt sich hinter dem Lenkrad dieser Einsitzer erleben.  Wer lieber auf zwei statt vier Rädern unterwegs ist, kann auch eine Motorradfahrt machen: Lange Strecken durch beeindruckende Landschaften oder mal ganz kontrolliert "neben der Spur": Wo soll die Fahrt auf der Kawasaki hingehen? Aber es gibt auch motorgetriebene Touren ganz ohne Räder: Eine Hochgeschwindigkeitsfahrt mit einem Honda Motorboot steht der Reise auf dem Land sicher in nichts nach. Eine Fahrt zu Land oder auf dem Wasser – wenn es sich bewegt, haben wir es im Angebot!
+          </p>
+      </div>
+
+      <div *ngIf="category_search == 'Essen &amp; Trinken'"  style="font-family: 'Open Sans', sans-serif;">
+          <hr class="hrstyle" />
+          <h4><img src="/assets/img/foodanddrink.png" /><span style="color:#585858 ; padding-left:20px;">ESSEN &amp; TRINKEN</span></h4>
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+          <p style=" word-break: normal;padding:10px; font-size:16px; ">
+              Entdecke eine komplett neue Welt der Aromen und köstliche Restaurants mit einem appetitlichen Gourmetgeschenk, das jeden Feinschmecker begeistern wird. Lass dich auf ein unterhaltsames und interaktives Erlebnis mit einem berühmten Koch ein, erlebe bei einer Kostprobe, was Whisky so besonders macht, oder probiere etwas, das du noch nie gegessen oder getrunken hast. Lass dich von Essen mal wieder richtig begeistern und nicht nur satt machen. Du suchst ein Geschenk zum Jahrestag, das euch mehr verbindet als das übliche Essen beim Lieblingsitaliener? Wie wäre ein Erlebnisdinner oder versuch's doch mal mit einem Kochkurs, der nicht nur deinen kulinarischen Horizont erweitert. Weißt du, wie man Sushi selbst zubereitet? Und wenn du schon kochen kannst oder gerade die Pause davon verschenken möchtest, gibt es doch immer noch mehr zu lernen: Bei einer Weinprobe zum Beispiel, welcher Wein sich am besten zu welcher Köstlichkeit eignet.
+          </p>
+      </div>
+
+      <div *ngIf="category_search == 'Abenteuer &amp; Sport'"  style="font-family: 'Open Sans', sans-serif;">
+          <hr class="hrstyle"/>
+          <h4><img src="../assets/img/adventuresportnature.png" /><span style="color:#585858 ; padding-left:20px;">ABENTEUER &amp; SPORT</span></h4>
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+
+          <p style=" word-break: normal;padding:10px; font-size:16px; ">
+              Fordere Freunde oder Familie zu einem unterhaltsamen und spaßigen Abenteuer heraus. Verschenke ein mitreißendes Erlebnis wie den Nervenkitzel eines Bungee Jumps an ganz besonderen Orten, oder eine schnelle Schlittenfahrt auf verschneiten Rodelbahnen.  Der Tag bleibt bestimmt allen in Erinnerung, wenn ihr gemeinsam eine aufregende Tour macht oder euch auf ein actiongeladenes Spiel einlasst: Paintball ist eine geniale Gelegenheit für Gruppen, sich miteinander in Teams zu messen – beschießt euch mit Farben, entkommt den Schüssen der anderen und versucht, die Flagge der Gegner zu erobern.  Jung gegen Alt, Männer gegen Frauen oder die Chefetage gegen die IT-Abteilung? Oder vielleicht möchtet ihr lieber gemeinsam gegen Fleisch fressende Zombies in einem unserer Überlebensabenteuer kämpfen?  Wer es realistischer mag, kann auch für einen Tag beim SWAT-Training mitmachen. Egal ob du ein hingebungsvollen Fitnessfanatiker oder eher etwas gemütlicher bist, wir haben großartige Erlebnisse für dich im Angebot.
+          </p>
+      </div>
+
+      <div *ngIf="category_search == 'Wellness &amp; Gesundheit'" style="font-family: 'Open Sans', sans-serif;">
+
+          <hr class="hrstyle" />
+
+          <h4><img src="/assets/img/wellness-beauty-health.png" /><span style="color:#585858 ; padding-left:20px;">WELLNESS, BEAUTY &amp; GESUNDHEIT</span></h4>
+
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+
+          <p style=" word-break: normal; padding:10px; font-size:16px; ">
+              Verwöhne Familienmitglieder, Freunde, oder dich selbst mit einer unserer Wellness-Geschenkideen. Sie sind perfekt, um sich zwischendurch auszuruhen und zu entspannen, oder dem Körper mal wieder etwas richtig Gutes zu tun. Unsere Gesundheits- und Wellness-Erlebnisse sind Wohlfühlgaranten.
+              Bei uns findest du die größte Auswahl an kostengünstigen Schönheitsbehandlungen in verschiedenen Einrichtungen, wie z.B. sinnliche Massagen und Gesichtsbehandlungen, oder entspannende Spabehandlungen für Zwei.  Ob mit dem Partner, Freunden oder allein: Erholung macht glücklich und ein magischer Tag, an dem du wirklich entspannst, ist manchmal Wochen Urlaub wert. Probier' doch mal  was ganz Neues und finde Ruhe für deine Seele beim Yoga mit Antischwerkraftelementen, lass deine Sinne einen Parfümkurs erleben oder power dich bei einer Trainingseinheit aus der Zeit der Ninjas und Samurais endlich mal wieder richtig aus. Bei uns findest du sicher das beste Angebot für Körper, Geist und Seele.
+          </p>
+      </div>
+
+      <div *ngIf="category_search == 'Kunst, Kultur & Lifestyle'" style="font-family: 'Open Sans', sans-serif;">
+          <hr class="hrstyle"/>
+          <h4><img src="/assets/img/art-culture-lifestyle.png" /><span style="color:#585858 ; padding-left:20px;">KUNST, KULTUR &amp; LIFESTYLE </span></h4>
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+          <p style=" word-break: normal; padding:10px; font-size:16px; ">
+              Sei doch mal die Wunschfee und lass Träume wahr werden: Schenk einem Freund einen Tag in einem Aufnahmestudio, an dem er versteckte Talente und vergessene Träume wieder entdecken kann. Oder wolltest du selbst schon immer mal ausprobieren, ob an dir ein Künstler verloren gegangen ist? Kreative Köpfe können auch auf einer Fototour über die moderne Themse in London oder bei einem Rundgang durch klassische Viertel Motive entdecken und die faszinierenden neuen Eindrücke ganz frei oder mit Tipps von einem Fotografen festhalten. Wir helfen dir aber auch gerne, ein anderes perfektes und einzigartiges kulturelles Geschenk zu finden. Ganz aktiv als Teilnehmer eines hochkarätigen Poker-Turniers oder doch lieber entspannt bei einem Film in einem klassischen Kino in Soho, dem Herzen der Londoner Kultur?
+          </p>
+      </div>
+
+      <div *ngIf="category_search == 'Wasser & Wind'" style="font-family: 'Open Sans', sans-serif;">
+          <hr class="hrstyle" />
+          <h4><img src="/assets/img/water-wind.png" /><span style="color:#585858 ; padding-left:20px;">WASSER &amp; WIND</span></h4>
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+          <div class="col-md-6" *ngFor="let n of experiences_days_shuffle | advertise: 'Wasser & Wind'; trackBy: n?._id" >
+
+              <a  href="{{n.productUrl}}" target="_blank"  >
+              <div  class="[ panel panel-default ] panel-google-plus md" style="height:250px;">
+                  <!-- <div class="panel-recently-booked-tag">
+                      <span id="price" >{{'ab ' + n.price + ' €'}}</span>
+                  </div> -->
+                      <img id="imgiadvertise"  *ngIf="n.images[0]" src="{{n.images[0]}}" />
+
+
+                      <h6 style="position: absolute;left: 0; bottom: 0; background-color:black; font-size:15px; opacity:0.7;  margin-left:15px; color:white;"><span style="margin-left:15px;">{{'- ' + n.title}}</span></h6>
+
+              </div> </a>
+
+          </div>
+          <p style=" word-break: normal;  padding:10px; font-size:16px; ">
+              Nimmst du die Herausforderung an, beim Surfen oder Segeln herauszufinden, wie sich Freiheit auf dem Wasser anfühlt? Gleich zwei Naturgewalten, das Meer und der Wind, treiben dich voran und du lernst, mit ihnen richtig umzugehen. Ob mit oder ohne Motor: Eine Fahrt übers Wasser ist etwas ganz anderes als der übliche Weg an Land. Romantisch oder aufregend, übers Wasser gleiten oder fast schon fliegen: Du entscheidest.
+              Mach den langsamen Start beim Tauchen oder sogar Surfen für Einsteiger im Schwimmbad oder erlebe bei einer Wildwasserkanufahrt den Rausch eines Wassersportabenteuers. Verbring den Tag als Pilot eines Luftkissenboots oder erobre das Meer zusammen mit einer ganz besonderen Person auf einem Jet Ski.
+              Und für alle Familien oder Unternehmen, die endlich mal wieder etwas zusammen machen wollen, bei dem niemand daran denkt, nur am Smartphone zu hängen: Buch doch einen Tag auf einem Fischerboot und ihr lernt gemeinsam, was Zusammenarbeit wirklich bedeutet.
+              Wir helfen dir gerne, das beste Erlebnis für deine Wünsche zu finden.
+          </p>
+
+      </div>
+
+      <div *ngIf="category_search == 'Reisen'" style="font-family: 'Open Sans', sans-serif;">
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+          <h4><img src="/assets/img/secret-places.png" /><span style="color:#585858 ; padding-left:20px;">REISEN</span></h4>
+          <hr style="border:solid #E0E0E0 1px;text-align:left;" />
+          <p style=" word-break: normal; padding:10px; font-size:16px; ">
+              Entdecke kunstvolle Architektur und bezaubernde Landschaften auf einer Reise zu den beliebtesten Attraktionen oder den schönsten Geheimplätzen. Wir haben ein Geschenk für jeden Reisetyp im Angebot: Von romantischen Tagesausflügen zu Schlössern oder anderen von Menschen geschaffenen Wunderwerken, bis zur Erforschung faszinierender Naturwunder ist alles dabei. Vergleich doch gemeinsam mit deiner Begleitung: Findet ihr die Wandmalereien von Neuschwanstein beeindruckender oder von der Natur geschaffene Tropfsteinhöhlen? Findest du die Aussicht von den höchsten Gebäuden oder von den steilsten Bergen spannender?Und faszinierend dich Tiere eher im Wildpark oder wenn mit mit ihnen schwimmst?
+              Und wenn du noch mehr als "nur angucken" möchtest, dann gefallen dir bestimmt unsere Erlebnisreisen: Rein in den Vergnügungspark! Und wer sich selbst auf der Achterbahn noch fast ein bisschen langweilt, der findet beim Astronautentraining bestimmt eine Herausforderung. Es war noch nie einfacher unvergessliche Erinnerungen zu machen.
+          </p>
+      </div>
+
+  </div>

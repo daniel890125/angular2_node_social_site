@@ -1,0 +1,176 @@
+<div class="col-md-6" >
+	<div class="tabbable-panel">
+		<div class="tab-content" *ngIf="wishlistData.length > 0 || !isWishList">
+
+			<div class="tab-pane active" *ngIf="!admin" >
+				<div *ngFor="let x of experiences_days; trackBy: x?._id" >
+					<div class="[ panel panel-default ] panel-google-plus">
+						<div class="ddown" style="float:right; margin-right:10px; color:#A8A8A8;" *ngIf="(role >=2)">
+							<span class="ddown" type="button">
+								<span class="[ glyphicon glyphicon-chevron-down ]" ></span>
+							</span>
+							<ul class="ddown-content" >
+								<li  style="width:20px;">
+									<button type="button" class="btn-link" tabindex="-1" (click)="deleteAcc(x._id)">Delete</button>
+								</li>
+								<li  style="width:20px;">
+									<button type="button" class="btn-link" tabindex="-1"  (click)="Insert(x._id)">Insert</button>
+								</li>
+								<li  style="width:20px;">
+									<button type="button" class="btn-link" tabindex="-1" (click)="edit(x._id)" data-target="#edit_modal" >Edit</button>
+								</li>
+							</ul>
+						</div>
+
+						<div class="panel-google-plus-tags" >
+							<span id="price" *ngIf="x.price">{{'€ ' + x.price}}</span>
+							<!-- <span id="price" *ngIf="!x.price" >{{'€'}}</span> -->
+						</div>
+						<div class="circle" (click)="wishlist(x._id, userId)" *ngIf="!isWishList">
+
+							<span><i class="glyphicon glyphicon-star" *ngIf="!isWishItem(x._id) && userId"></i></span>
+							<span><i class="glyphicon glyphicon-star icon-active" *ngIf="isWishItem(x._id) && userId"></i></span>
+
+						</div>
+					<div class="circle" *ngIf="isWishList">
+						<span><button class="btn btn-default" (click) = "removeWishList(x._id)">Delete</button></span>
+					</div>
+						<div class="panel-heading" >
+							<img  class="img-circle pull-left" *ngIf="!x.userImg && !x.user" src="{{x.userImage}}" style="height:50px; width:50px;" />
+							<img  class="img-circle pull-left" *ngIf="x.user" src="user/pid/{{x.user}}" style="height:50px; width:50px;" />
+							<img  class="img-circle pull-left" *ngIf="!x.user && x.userImg" src="/assets/fonts/male.png" style="height:50px; width:50px;" />
+							<h3 id="panel-heading-title" >{{x.title}}</h3>
+							<h5 id="panel-heading-title"><span>{{x.companyName}}</span>-<span>{{x.city}}</span></h5>
+
+							<h5 id="panel-heading-title" ><span>{{x.category}}</span></h5>
+							<table>
+								<tr *ngFor="let i of countCommentSum | myFilter : x._id" >
+									<td><rating [starCount]='5' (rate)="rateVal($event)" [rating]="(i.sum / i.count)" ></rating></td>
+									<td style="font-size: 12px;" >{{i.sum / i.count |number:'1.1-1'}}</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="panel-body" >
+							<div class="imgWrap" >
+								<div class="carousel slide" id="{{x._id}}" style="margin-top:15px;">
+									<div class="carousel-inner" >
+										<div class="item active " *ngIf="x.images[0]" >
+											<img  id="imgi" [src]="x.images[0]" title={{x.description}}/>
+										</div>
+										<div class="item " id="imgi"  *ngIf="x.images[1]" >
+											<img   id="imgi" [src]="x.images[1]"/>
+										</div>
+										<div class="item " id="imgi" *ngIf="x.images[2]" >
+											<img  id="imgi" [src]="x.images[2]"/>
+										</div>
+									</div>
+									<a class="left carousel-control" href="#{{x._id}}"  data-slide="prev" style=" outline:none"> <span class="glyphicon glyphicon-chevron-left"></span></a>
+									<a class="right carousel-control" href="#{{x._id}}" data-slide="next" style=" outline:none"> <span class="glyphicon glyphicon-chevron-right"></span></a>
+								</div>
+								<p class="imgDescription" style="padding:10px;" >{{x.description}}</p>
+							</div>
+							<div class="panel-footer">
+								<table>
+									<tr>
+										<td><a *ngIf="x.presentPack" class="tooltips" href="#"><img src="/assets/fonts/present.png"/><span >Provides packet</span> </a></td>
+
+										<td><label><a *ngIf="x.giftCard" class="tooltips" href="#"><img src="/assets/fonts/giftcard.png"/><span >Auch als Gutschein</span> </a></label></td>
+									</tr>
+								</table>
+							</div>
+							<comment [isAlive]='isAlive' [comments]="comments" [countCommentSum]="countCommentSum" (commentStatus)="commentStatus($event)"  [rec]="x" (refreshComments)="refreshComments($event)"></comment>
+						</div>
+
+
+						<!--<div ng-include="'../htm/comments_all.html'" ></div>-->
+						<div class="sl-comment" *ngIf="showComment"  id="clickMore"  >
+							<div class="sl-textarea"   >
+								<a href (click) = "decrementLimit()" class="glyphicon glyphicon-chevron-up" style="float:right; margin-left:20px;" *ngIf="limit >3">.</a><a href (click) = "incrementLimit()"  style="float:right; " *ngIf="limit <= comments.length" class="glyphicon glyphicon-chevron-down"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button  *ngIf="!admin" class="btn btn-default" (mouseover)="loadMore()" style="float:right; margin-bottom:20px;" >
+				<span class="glyphicon glyphicon-chevron-down"></span>Mehr laden..
+			</button>
+
+
+			<!-- <parsexml *ngIf='admin' [userId]='userId' > </parsexml> -->
+
+
+
+		</div>
+		<div class="center" *ngIf="isWishList && wishlistData.length == 0">
+			Empty
+		</div>
+	</div>
+</div>
+
+
+<div class="modal" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="editContent">
+        <div class="modal-dialog" >
+            <form [formGroup]="editform" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Changing records</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title" class="control-label">Title*:</label>
+                            <input type="text" class="form-control" formControlName="title" id="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="control-label">Description*:</label>
+                            <textarea type="text" class="form-control" formControlName="description" id="description" ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="images" class="control-label">ImageURL:</label>
+                            <input type="text" class="form-control" formControlName="images" id="images">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" id="btnSendExperienceData" class="btn btn-primary" (click)="editData()" [disabled]="!editform.valid" >
+                            Update changes
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+	<div class="modal" id="insertImg_modal" tabindex="-1" role="dialog" aria-labelledby="ImageInsert" >
+		<div class="modal-dialog" >
+			<form name="insertForm"  >
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="imageModalLabel">Add another image</h4>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">Image Path* :</label>
+						<input type="file" class="form-control" id="fileToUpload" name="file"  accept="image/png, image/jpeg"  multiple="multiple"  (change)="onFileSelect($event)" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+						<button type="button" id="btnSendExperienceData" class="btn btn-primary" (click)="insertImage()" >
+							Save changes
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>

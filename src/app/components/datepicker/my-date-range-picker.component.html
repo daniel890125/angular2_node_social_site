@@ -1,0 +1,107 @@
+<div class="mydrp" [ngStyle]="{'border': inline ? 'none' : '1px solid #AAA'}">
+    <!--<div class="selectiongroup" *ngIf="!inline">
+        <input type="text" class="selection" maxlength="23" [ngClass]="{'invaliddaterange': invalidDateRange&&indicateInvalidDateRange}" placeholder="{{showDateRangeFormatPlaceholder?dateRangeFormat:''}}"
+               [ngStyle]="{'height': height, 'line-height': height, 'font-size': selectionTxtFontSize, 'border': 'none', 'padding-right': selectionDayTxt.length>0 ? '60px' : '30px'}"
+               (keyup)="userDateRangeInput($event)" [value]="selectionDayTxt">
+        <span class="selbtngroup" [style.height]="height">
+            <button type="button" class="btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()">
+                <span class="icon icon-cross" [ngStyle]="{'line-height': height}"></span>
+            </button>
+            <button type="button" class="btnpicker" (click)="openBtnClicked()">
+                <span class="icon icon-calendar" [ngStyle]="{'line-height': height}"></span>
+            </button>
+        </span>
+    </div>-->
+    <div class="selector" [ngClass]="{'inline': inline, 'alignselectorright': alignSelectorRight}">
+        <div>
+            <table class="header">
+                <tr>
+                    <td>
+                        <div style="float:left" class="prev-left">
+                            <div class="headerbtn" (click)="prevMonth()"><span class="icon icon-left"></span></div>
+                        </div>
+                    </td>
+                    <td>
+                        {{visibleMonth.monthTxt}} {{visibleMonth.year}}
+                        <button type="button" class="headerclearbtn" [disabled]="beginDate.year===0&&endDate.year===0" [ngClass]="{'btndisable':beginDate.year===0&&endDate.year===0}" (click)="clearBtnClicked()">{{clearBtnTxt}}</button>
+                    </td>
+                    <td>
+                        <div style="float:right" class="prev-right">
+                            <div class="headerbtn" (click)="nextMonth()"><span class="icon icon-right"></span></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="caltable">
+                <thead><tr class="day-title"><th *ngFor="let d of weekDays">{{d}}</th></tr></thead>
+                <tbody>
+                    <tr *ngFor="let w of dates">
+                        <td *ngFor="let d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH&&!d.disabled, 'currday':d.currDay,
+                        'range': isInRange(d)==1||isInRange(d)==2||isInRange(d)==3,'range-first': isInRange(d)==1,'range-last': isInRange(d)==3, 'weekend':isWeekend(d),
+                        'disabled': d.disabled, 'pending':isInPending(d)==2, 'pending-first':isInPending(d)==1, 'pending-last':isInPending(d)==3}" (click)="$event.stopPropagation(); !d.disabled && cellClicked(d)" (mouseenter)="$event.stopPropagation();updatePendingDays(d);">
+                            <div class="cursor" [ngClass]="{'prevmonth':d.cmo===PREV_MONTH,
+                            'selectedday':beginDate.day===d.dateObj.day&&beginDate.month===d.dateObj.month&&beginDate.year===d.dateObj.year||endDate.day===d.dateObj.day&&endDate.month===d.dateObj.month&&endDate.year===d.dateObj.year,
+                            'currmonth':d.cmo===CURR_MONTH,
+                            'nextmonth':d.cmo===NEXT_MONTH,
+                            'selecteddaygreen':beginDate.day===d.dateObj.day&&beginDate.month===d.dateObj.month&&beginDate.year===d.dateObj.year&&isBeginDate&&isRangeSelected()||endDate.day===d.dateObj.day&&endDate.month===d.dateObj.month&&endDate.year===d.dateObj.year&&!isBeginDate&&isRangeSelected(),
+                            'sunday':d.dayNbr===0&&sunHighlight}">
+                                <span [ngClass]="{'sundayDim': sunHighlight && d.dayNbr === 0 && (d.cmo===PREV_MONTH || d.cmo===NEXT_MONTH || d.disabled)}">{{d.dateObj.day}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <table class="header">
+                <tr>
+                    <td>
+                        <div style="float:left" class="next-left">
+                            <div class="headerbtn" (click)="prevMonth()"><span class="icon icon-left"></span></div>
+                        </div>
+                    </td>
+                    <td>
+                        {{nextVisibleMonth.monthTxt}} {{nextVisibleMonth.year}}
+                        <!--<button type="button" class="headerclearbtn" [disabled]="beginDate.year===0&&endDate.year===0" [ngClass]="{'btndisable':beginDate.year===0&&endDate.year===0}" (click)="clearBtnClicked()">{{clearBtnTxt}}</button>-->
+                    </td>
+                    <td>
+                        <div style="float:right" class="next-right">
+                            <div class="headerbtn" (click)="nextMonth()"><span class="icon icon-right"></span></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="caltable">
+                <thead><tr class="day-title"><th *ngFor="let d of weekDays">{{d}}</th></tr></thead>
+                <tbody>
+                    <tr *ngFor="let w of nextDates">
+                        <td *ngFor="let d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH&&!d.disabled, 'currday':d.currDay,
+                        'range': isInRange(d)==1||isInRange(d)==2||isInRange(d)==3,'range-first': isInRange(d)==1,'range-last': isInRange(d)==3, 'weekend':isWeekend(d),
+                        'disabled': d.disabled, 'pending':isInPending(d)==2, 'pending-first':isInPending(d)==1, 'pending-last':isInPending(d)==3}" (click)="$event.stopPropagation(); !d.disabled && cellClicked(d)" (mouseenter)="$event.stopPropagation();updatePendingDays(d);">
+                            <div class="cursor" [ngClass]="{'prevmonth':d.cmo===PREV_MONTH,
+                            'selectedday':beginDate.day===d.dateObj.day&&beginDate.month===d.dateObj.month&&beginDate.year===d.dateObj.year||endDate.day===d.dateObj.day&&endDate.month===d.dateObj.month&&endDate.year===d.dateObj.year,
+                            'currmonth':d.cmo===CURR_MONTH,
+                            'nextmonth':d.cmo===NEXT_MONTH,
+                            'selecteddaygreen':beginDate.day===d.dateObj.day&&beginDate.month===d.dateObj.month&&beginDate.year===d.dateObj.year&&isBeginDate&&isRangeSelected()||endDate.day===d.dateObj.day&&endDate.month===d.dateObj.month&&endDate.year===d.dateObj.year&&!isBeginDate&&isRangeSelected(),
+                            'sunday':d.dayNbr===0&&sunHighlight}">
+                                <span [ngClass]="{'sundayDim': sunHighlight && d.dayNbr === 0 && (d.cmo===PREV_MONTH || d.cmo===NEXT_MONTH || d.disabled)}">{{d.dateObj.day}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <input class="fromDate" type="text" [(ngModel)]="(beginDate.year == 0 || beginDate.month == 0 || beginDate.day == 0)? '' : monthLabels[beginDate.month+''] + ' ' + beginDate.day + ', ' + beginDate.year" [readonly]="true"/>
+        </div>
+        <div style="text-align:center;">
+            <input class="toDate" type="text" [(ngModel)]="(endDate.year == 0 || endDate.month == 0 || endDate.day == 0)? '' : monthLabels[endDate.month+''] + ' ' + endDate.day + ', ' + endDate.year" [readonly]="true"/>
+        </div>
+        <div class="footerarea">
+            <!-- <button type="button" class="footerbtn" *ngIf="isBeginDate" [disabled]="beginDate.year===0" [ngClass]="{'btndisable':beginDate.year===0}" (click)="$event.stopPropagation();toEndDate($event)">{{endDateBtnTxt}}</button>
+            <button type="button" class="footerbtn" *ngIf="!isBeginDate" (click)="$event.stopPropagation();toBeginDate($event)">{{beginDateBtnTxt}}</button> -->
+            <!-- <button type="button" class="footerbtn" *ngIf="!isBeginDate||endDate.year!==0" [disabled]="endDate.year===0" [ngClass]="{'btndisable':endDate.year===0}" (click)="$event.stopPropagation();rangeSelected()">Save</button> -->
+        </div>
+    </div>
+</div>

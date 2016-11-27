@@ -1,0 +1,33 @@
+<div *ngIf="showComment">
+
+	<div  class="sl-comment"  *ngFor="let y of comments  | commentsFilter:Id | slice:0:limit" >
+        <table>
+        	<tr>
+            	<td>
+                    <div >
+                        <div style="margin-left:55px;">
+                            <rating [starCount]='5' (rate)="rateVal($event)" [rating]="y.star" ></rating>
+                        <!--<div class="star-rating" style="margin-left:55px;"  star-rating rating-value="y.star" data-max="5" >-->
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <img  class="[ img-circle pull-left ]" *ngIf="y._creator" src="/user/pid/{{y._creator}}" style="height:50px; width:50px;" />
+        <img class="[ img-circle pull-left ]"  *ngIf="!y._creator" src="/assets/fonts/male.png" style="height:50px; width:50px;" />
+            <div class="sl-textarea"   >
+                <div ><b>{{y.namePerson}}</b></div>
+                <small >Erstellt am: {{ y.created_at | date: 'yyyy/MM/dd-HH:MM'}}</small>
+                <div >{{y.comment}}</div>
+            </div>
+            <div class="clearfix"></div>
+    </div>
+		<div class="sl-comment"   id="clickMore"  >
+
+												<div class="sl-textarea"   >
+
+													<a  class="glyphicon glyphicon-chevron-up" (click)="decrementLimit()" style="float:right; margin-left:20px;" ></a><a  (click)="incrementLimit()"  style="float:right; " class="glyphicon glyphicon-chevron-down"></a>
+												</div>
+											</div>
+</div>

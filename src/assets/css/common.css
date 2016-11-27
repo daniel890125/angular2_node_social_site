@@ -1,0 +1,13 @@
+.range-slider-wrap {
+    width: 40%;
+    margin: 20px 20px 50px;
+}
+
+.range-slider .slider-selection {
+    background-color: #00BCE5;
+}
+
+.range-slider .min-boundary:after, .range-slider .max-boundary:after {
+    content: '\20AC';
+    margin-left: 2px;
+}

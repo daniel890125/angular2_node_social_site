@@ -1,0 +1,52 @@
+<html>
+	<head>
+    <link data-require="bootstrap-css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+	</head>
+	<body style="background-color:#E8E8E8">
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-12" style="background-color:#FFFFFF">
+
+			<form role="form" method="post" action="/sendApplicaton">
+				<h1>Bewerbung als Softwareentwickler Javascript</h1>
+				<div class="form-group">
+
+					<label for="name">
+						Name
+					</label>
+					<input class="form-control" id="name" type="text" />
+				</div>
+				<div class="form-group">
+
+					<label for="vorname">
+						Vorname
+					</label>
+					<input class="form-control" id="vorname" type="text" />
+				</div>
+				<div class="form-group">
+
+					<label for="fileinput">
+						File input
+					</label>
+					<input id="fileinput" type="file" />
+					<p class="help-block">
+						Nur PDF. Bitte bei mehreren Dokumenten diese zusammenführen.
+					</p>
+				</div>
+				<div class="checkbox">
+
+					<label>
+						<input type="checkbox" />Datenschutzrichtlinien
+					</label>
+				</div>
+				<button type="submit" class="btn btn-default">
+					Submit
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

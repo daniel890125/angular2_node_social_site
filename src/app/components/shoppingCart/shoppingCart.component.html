@@ -1,0 +1,37 @@
+<div>
+	<button style="margin-left: 181px;" class="btn btn-primary" (click)="shoppingCartService.showCart=false"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</button>
+</div><br/><br/><br/>
+<div class="container" >
+	<div class="jumbotron">
+		<table class="table table-condensed table-striped">
+			<thead>
+				<tr class="row">
+					<th class="col-md-3">Description</th>
+					<th class="col-md-1">Price</th>
+					<th class="col-md-2">Quantity</th>
+					<th class="col-md-2">Total Price</th>
+					<th class="col-md-3">&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of  shoppingCartService.cartItems;let i=index" class="row">
+					<td class="col-md-3">{{item.description}}</td>
+					<td class="col-md-1">{{item.currency}} {{item.price}}</td>
+					<td class="col-md-2"><input value="1" min="1" style="width:45%" [(ngModel)]="item.quantity" class="form-control" type="number"
+						/></td>
+					<td class="col-md-2">{{item.currency}} {{item.quantity*item.price}}</td>
+					<td class="col-md-3">
+						<button class="btn btn-default " type="button" (click)="deleteItem(i)"><span class="glyphicon glyphicon-trash"></span></button>
+					</td>
+				</tr>
+				<tr class="row">
+					<td class="col-md-3"></td>
+					<td class="col-md-1"></td>
+					<td class="col-md-2"></td>
+					<td class="col-md-2">Total Amount :{{shoppingCartService.cartItems[0].currency}} {{calculateTotal()}}</td>
+					<td class="col-md-2"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

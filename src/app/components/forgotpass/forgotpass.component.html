@@ -1,0 +1,28 @@
+<div class="modal fade" id="password_modal" #passModal>
+    <div class="modal-dialog" >
+        <form name="modalForm"  >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Recover Password</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title" class="control-label">Email*:</label>
+                        <input type="email" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary" (click)="fetchPassword()" >
+                            Passwort zurücksetzen
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

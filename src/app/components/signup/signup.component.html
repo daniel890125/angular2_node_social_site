@@ -1,0 +1,36 @@
+<div class="col-md-12 " style="margin-top:30px;">
+    <div style="color:red; padding-top:5px;">
+        {{userExist}}
+    </div>
+    <div style="color:green; padding-top:5px;">
+        {{userNotExist}}
+    </div>
+    <form [formGroup]="signform">
+        <p>
+            <input class="form-control"   formControlName="nameMain" name="nameMain" placeholder="Name*" type="text" required/>
+        </p>
+        <p>
+            <input class="form-control"   formControlName="email" name="email" placeholder="Deine Email*" type="email" />
+            <span style="color:red" *ngIf="signform.controls.email.touched && !signform.controls.email.valid"> Invalid email address.</span>
+        </p>
+        <p>
+            <input class="form-control" id="password" formControlName="password"  placeholder="Passwort*" name="password" type="password" />
+            <span style="color:red" *ngIf="signform.controls.password.touched && !signform.controls.password.valid"> Password is required. </span>
+        </p>
+        <p>
+            <input class="form-control"  id="password_confirm" formControlName="confirm_password" name="password_confirm" placeholder="Passwort bestätigen*" type="password" compare-to="password"required />
+            <span style="color:red" *ngIf="signform.controls.confirm_password.touched && !signform.controls.confirm_password.valid"> Password is required. </span> <span style="color:red" *ngIf="signform.controls.confirm_password.value !== signform.controls.password.value">Password does not match!. </span>
+        </p>
+        <br />
+        <br />
+        <div class="form-group">
+            <p style="word-break: normal; font-size:12px; margin-top:10px; ">
+                Mit dem Klicken auf den Button "Regristrieren" stimmts du unseren <a href="/privacypolicy.html">Datenschutzrichtlinien</a> zu
+
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" type="button"  [disabled]="!signform.valid" (click)="signUp()" >
+                Registrieren
+            </button>
+        </div>
+    </form>
+</div>

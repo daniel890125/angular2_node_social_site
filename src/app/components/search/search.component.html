@@ -1,0 +1,355 @@
+<div class="stick" style="background-color:#F5F5F5;">
+<div class="load" *ngIf="loading"></div>
+	<div class="search" style=" background-color:#FFFFFF;">
+		<div class="container" style=" background-color:#FFFFFF;">
+			<div class="row">
+				<div class="col-md-2">
+					<a href="http://smarter-experiences.de/" style=" outline:none; "> <img src="/assets/img/experiencedayssearch.png" style="height:85px;   margin-top:15px;" /> </a>
+				</div>
+
+				<div class="col-md-10 " style="margin-top:35px">
+					<div class="form-section">
+						<div class="row">
+							<form id="searchfield">
+
+								<div class="search_box">
+
+									<div class="search-input-fields">
+											<div class="col-sm-4">
+											  <div class="location">
+											   <div class="location-inner-wrap">
+
+
+												   <input type="text" class="guest" [(ngModel)]="place_search" [ngModelOptions]="{standalone: true}" (keyup)="search(place_search)"  placeholder="z.B. Hamburg oder Ballonfahrt Hamburg" focus="true" >
+												   <span class="search-close-icon"><i (click)="emptyAutocomplete()" class="search-close-icon glyphicon glyphicon-remove"></i></span>
+                                                 </div>
+													<div class="autocomplete">
+															<ul class="autocomplete">
+															    <li *ngIf="noplacefound== true">No records found.</li>
+
+																<li *ngFor="let place of items" (click)="selectPlace(place)">
+
+																	<i *ngIf="place.is_city== true" class="glyphicon glyphicon-map-marker"></i>
+														             <i *ngIf="place.is_city== false" class="glyphicon glyphicon-gift"></i>
+																		<span class="bold">{{place.placename}}</span> {{place.country}}
+
+																</li>
+															</ul>
+											</div>
+											    </div>
+											</div>
+											<div class="col-sm-2">
+
+												<select [(ngModel)]="miles" [ngModelOptions]="{standalone: true}" class="miles_select guest"  (change)="changeRange($event)">
+
+													<option value="20">20 km</option>
+													<option value="50">50 km</option>
+													<option value="100">100 km </option>
+													<option value="200">>200 km</option>
+													</select>
+												</div>
+
+											<div class="col-sm-3">
+												<select class="guest categorydd" [(ngModel)]="category_search" [ngModelOptions]="{standalone: true}" (ngModelChange)="changeCategory($event)" >
+
+														<option value="Alle Kategorien">Alle Kategorien</option>
+														<option value="Fliegen &amp; Fallen">Fliegen &amp; Fallen</option>
+														<option value="Motorpower">Motorpower</option>
+														<option value="Essen &amp; Trinken">Essen &amp; Trinken</option>
+														<option value="Abenteuer &amp; Sport">Abenteuer &amp; Sport</option>
+														<option value="Wellness &amp; Gesundheit">Wellness &amp; Gesundheit</option>
+														<option value="Kunst, Kultur &amp; Lifestyle">Kunst, Kultur &amp; Lifestyle</option>
+														<option value="Wasser &amp; Wind">Wasser &amp; Wind</option>
+														<option value="Reisen">Reisen</option>
+													</select>
+												</div>
+										<div class="col-sm-3"  *ngIf="category_search == 'Alle Kategorien'">
+											<select class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search" (ngModelChange)="changeSpecCat($event)" >
+														<option label="Unterkategorie" selected>Unterkategorie</option>
+														<optgroup label="Fliegen &amp; Fallen">
+															<option value="Fallen &amp; Springen">Fallen &amp; Springen</option>
+															<option value="Fliegen mit Motor">Fliegen mit Motor</option>
+															<option value="Gleiten &amp; Schweben">Gleiten &amp; Schweben</option>
+															<option value="Jets &amp; Weltraum">Jets &amp; Weltraum</option>
+														</optgroup>
+
+														<optgroup label="Motorpower">
+															<option value="Geländewagen">Geländewagen </option>
+															<option value="Ketten &amp; Schienen">Ketten &amp; Schienen</option>
+															<option value="Motorräder">Motorräder</option>
+																<option value="Oldtimer">Oldtimer </option>
+																<option value="Quads &amp; Spaßmobile">Quads &amp; Spaßmobile </option>
+															<option value="Rennwagen">Rennwagen</option>
+																<option value="Schneefahrzeuge">Schneefahrzeuge</option>
+															<option value="Traumautos">Traumautos </option>
+
+														</optgroup>
+
+														<optgroup label="Essen &amp; Trinken">
+															<option value="Essen gehen">Essen gehen</option>
+															<option value="Kochkurse">Kochkurse</option>
+															<option value="Wein, Bier &amp; Spirituosen">Wein, Bier &amp; Spirituosen</option>
+															<option value="Kaffee &amp; Schokolade">Kaffee &amp; Schokolade</option>
+														</optgroup>
+
+														<optgroup label="Abenteuer &amp; Sport">
+															<option value="Sport im Sommer">Sport im Sommer</option>
+															<option value="Sport im Winter">Sport im Winter</option>
+															<option value="Action &amp; Stunts">Action &amp; Stunts</option>
+															<option value="Wildnis">Wildnis</option>
+
+														</optgroup>
+														<optgroup label="Wellness &amp; Gesundheit">
+															<option value="Verwöhnen &amp; Erholen">Verwöhnen &amp; Erholen</option>
+															<option value="Beauty &amp; Styling">Beauty &amp; Styling</option>
+															<option value="Fitness &amp; Ernährung">Fitness &amp; Ernährung</option>
+															<option value="Körper &amp; Seele">Körper &amp; Seele</option>
+
+														</optgroup>
+														<optgroup label="Kunst, Kultur &amp; Lifestyle">
+															<option value="Dating, Liebe &amp; Romantik">Dating, Liebe &amp; Romantik</option>
+															<option value="Kunst &amp; Handwerk">Kunst &amp; Handwerk</option>
+															<option value="Lifestyle">Lifestyle</option>
+															<option value="Musik &amp; Tanz">Musik &amp; Tanz</option>
+															<option value="Vor der Kamera">Vor der Kamera</option>
+															<option value="Vor der Kamera">Wedding</option>
+
+														</optgroup>
+														<optgroup label="Wasser &amp; Wind">
+															<option value="Boot">Boot</option>
+															<option value="Kajak">Kanu</option>
+															<option value="Rafting">Rafting</option>
+															<option value="Segeln">Segeln</option>
+															<option value="Surfen">Surfen</option>
+															<option value="Tauchen">Tauchen</option>
+															<option value="Wasserspass">Wasserspass</option>
+														</optgroup>
+														<optgroup label="Reisen">
+
+
+															<option value="Festivals">Festival</option>
+														<option value="Hotel">Hotel</option>
+														<option value="Kultur">Kultur</option>
+															<option value="Nachtleben">Nachtleben</option>
+															<option value="Natur">Natur</option>
+														<option value="Romantik">Romantik</option>
+															<option value="Staedtetrips &amp; Ausfluege">Städtetrips &amp; Ausflüge</option>
+														</optgroup>
+
+								     </select>
+											</div>
+
+											<div class="col-sm-3" *ngIf="category_search == 'Fliegen &amp; Fallen'">
+
+										<select class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search" (ngModelChange)="changeSpecCat($event)">
+
+											<optgroup label="Fliegen &amp; Fallen">
+												<option value="Fallen &amp; Springen">Fallen &amp; Springen</option>
+												<option value="Fliegen mit Motor">Fliegen mit Motor</option>
+												<option value="Gleiten &amp; Schweben">Gleiten &amp; Schweben</option>
+												<option value="Jets &amp; Weltraum">Jets &amp; Weltraum</option>
+											</optgroup>
+										</select>
+									</div>
+									<div class="col-sm-3" *ngIf="category_search == 'Motorpower'">
+
+										<select id="scrollable-menu" class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search" [ngModelOptions]="{standalone: true}" (ngModelChange)="changeSpecCat($event)">
+											<optgroup label="Motorpower">
+												<option value="Geländewagen">Geländewagen </option>
+												<option value="Ketten &amp; Schienen">Ketten &amp; Schienen</option>
+												<option value="Motorräder">Motorräder</option>
+													<option value="Oldtimer">Oldtimer </option>
+													<option value="Quads &amp; Spaßmobile">Quads &amp; Spaßmobile </option>
+												<option value="Rennwagen">Rennwagen</option>
+													<option value="Schneefahrzeuge">Schneefahrzeuge</option>
+												<option value="Traumautos">Traumautos </option>
+											</optgroup>
+										</select>
+									</div>
+									<div class="col-sm-3" *ngIf="category_search == 'Essen &amp; Trinken'">
+
+										<select id="scrollable-menu" class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search" (ngModelChange)="changeSpecCat($event)">
+											<optgroup label="Essen &amp; Trinken">
+												<option value="Essen gehen">Essen gehen</option>
+												<option value="Kochkurse">Kochkurse</option>
+												<option value="Wein, Bier &amp; Spirituosen">Wein, Bier &amp; Spirituosen</option>
+												<option value="Kaffee &amp; Schokolade">Kaffee &amp; Schokolade</option>
+											</optgroup>
+										</select>
+									</div>
+									<div class="col-sm-3" *ngIf="category_search == 'Abenteuer &amp; Sport'">
+
+										<select class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search" (ngModelChange)="changeSpecCat($event)">
+											<optgroup label="Abenteuer &amp; Sport">
+												<option value="Sport im Sommer">Sport im Sommer</option>
+												<option value="Sport im Winter">Sport im Winter</option>
+												<option value="Action &amp; Stunts">Action &amp; Stunts</option>
+												<option value="Wildnis">Wildnis</option>
+											</optgroup>
+										</select>
+									</div>
+									<div class="col-sm-3" *ngIf="category_search == 'Wellness &amp; Gesundheit'">
+
+										<select class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search"  (ngModelChange)="changeSpecCat($event)">
+											<optgroup label="Wellness &amp; Gesundheit">
+													<option value="Beauty & Styling">Beauty & Styling</option>
+															<option value="Massagen">Massagen</option>
+												<option value="Verwöhnen &amp; Erholen">Verwöhnen &amp; Erholen</option>
+											</optgroup>
+										</select>
+									</div>
+									<div class="col-sm-3" *ngIf="category_search == 'Kunst, Kultur &amp; Lifestyle'">
+
+										<select class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search" (ngModelChange)="changeSpecCat($event)">
+											<optgroup label="Kunst, Kultur &amp; Lifestyle">
+												<option value="Vor der Kamera">Vor der Kamera</option>
+												<option value="Kunst &amp; Handwerk">Kunst &amp; Handwerk</option>
+												<option value="Musik &amp; Tanz">Musik &amp; Tanz</option>
+												<option value="Dating, Liebe &amp; Romantik">Dating, Liebe &amp; Romantik</option>
+												<option value="Lifestyle">Lifestyle</option>
+
+											</optgroup>
+										</select>
+									</div>
+									<div class="col-sm-3" *ngIf="category_search == 'Wasser &amp; Wind'">
+
+										<select class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search" (ngModelChange)="changeSpecCat($event)">
+											<optgroup label="Wasser &amp; Wind">
+												<option value="Boot">Boot</option>
+												<option value="Kajak">Kanu</option>
+												<option value="Kanu">Kanu</option>
+												<option value="Rafting">Rafting</option>
+												<option value="Segeln">Segeln</option>
+												<option value="Surfen">Surfen</option>
+												<option value="Tauchen">Tauchen</option>
+											</optgroup>
+										</select>
+									</div>
+									<div class="col-sm-3" *ngIf="category_search == 'Reisen'">
+										<select class="guest subcategorydd" [(ngModel)]="specCategory_search" name="specCategory_search" (ngModelChange)="changeSpecCat($event)">
+											<optgroup label="Reisen">
+												<option value="Festivals">Festival</option>
+											<option value="Hotel">Hotel</option>
+											<option value="Kultur">Kultur</option>
+												<option value="Nachtleben">Nachtleben</option>
+												<option value="Natur">Natur</option>
+											<option value="Romantik">Romantik</option>
+												<option value="Staedtetrips &amp; Ausfluege">Städtetrips &amp; Ausflüge</option>
+
+											</optgroup>
+										</select>
+									</div>
+
+
+									</div>
+
+
+		</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="tabbable-panel">
+				<div class="tabbable-line">
+					<ul class="nav nav-tabs ">
+						<li class="active">
+							<a href="#_all" data-toggle="tab" (click)="pricewise(0)"> Alle </a>
+						</li>
+						<li>
+							<a href="#_all" (click)="pricewise(1)" data-toggle="tab" > Preis </a>
+						</li>
+						<li>
+							<a href="#_all" (click)="pricewise(-1)" data-toggle="tab"> Beste</a>
+						</li>
+						<li >
+							<a href="#_admin" data-toggle="tab" (click)="profileClick()" *ngIf="isAlive"><span class="glyphicon glyphicon-user"></span> Profile </a>
+						</li>
+						<li>
+							<a href="#_own" data-toggle="tab" style="outline:none;" (click)="getOwn()" *ngIf="role ==1"> Eigene </a>
+						</li>
+						<li>
+							<a href="#_message" data-toggle="tab" style="outline:none;" (click)="messageClick()" *ngIf="isAlive"> Messages <span class="badge" style="background-color:red;">10</span></a>
+						</li>
+
+						<login (roleSet)='setRole($event)' (loginState)='loginState($event)'  (userIdSet)='setUserId($event)' (refreshPage)='changeQuery()' [logoutFlag]='logoutFlag'></login>
+
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+<div>
+	<div class="container">
+		<div class="row" >
+
+			<ul *ngFor="let spec of specItems" class="nav navbar-nav " [hidden]="hideSubSubCat">  <!-- [hidden]="specCategory_search == 'Unterkategorie'" -->
+				<li >
+					<button class="btn btn-link buttonSubCategories" (click)="changeSpecSpecItem(spec)" >{{spec}}</button>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+</div>
+<div class="container" style="margin-top:4%;" [hidden]="shoppingCartService.showCart || addRecordsService.addRecord || profileTab">
+	<div class="row" style="margin-bottom:2%;">
+		<div class="col-md-6">
+			<div class="col-md-12">
+				<div>{{filteredRecords}} Ergebnisse</div>
+				<a href="auth/facebook"></a>
+			</div>
+			<div class="col-md-12" style="margin-bottom:5%; margin-top:5%;">
+				<range-slider [min]="min" [max]="max" (boundariesChangeEvent)="onSliderChange($event)"></range-slider>
+			</div>
+
+
+
+	<!-- <div class="search_boxDate">
+
+				<div class="search-input-fieldsDate">
+	<div class="col-md-6">
+					<input type="text" placeholder="From" />
+					 <span class="search-close-iconCalendar"><i (click)="emptyAutocomplete()" class="search-close-icon glyphicon glyphicon-calendar"></i></span>
+				</div>
+				<div class="col-md-6">
+								<input type="text" placeholder="To" />
+								<span class="search-close-iconCalendar"><i (click)="emptyAutocomplete()" class="search-close-icon glyphicon glyphicon-calendar"></i></span>
+							</div>
+
+
+
+	</div>
+</div> -->
+
+
+
+
+
+</div>
+
+
+	</div>
+
+
+
+    <expdays [expdays]='exp_search' [userId]='userId' [alive]='isAlive' (refreshPage)='changeQuery()' (moreClicked)='loadMore($event)' [role]="role" [admin]='adminTab' [isWishList]='false'></expdays>
+    <advertise [catSearch]='category_search' [expDays]='exp_search_adv' ></advertise>
+</div><br/>
+
+<shopping-cart *ngIf="shoppingCartService.showCart" ></shopping-cart>
+  <record [userId]="userId" *ngIf="addRecordsService.addRecord"></record>
+	<profile *ngIf='profileTab' [userId]='userId' [dataRecords]="exp_search" [profileId]="profileId" (logout)="logout()"> </profile>
+
+<div (window:scroll)="onScroll($event)" >
+	<button type='button' id="toTop" (click)='toTop()' class="btn btn-default" *ngIf="scrollTop==true"><span style="font-size:1.5em;" class="glyphicon glyphicon-circle-arrow-up jumpUp" ></span></button>
+</div>

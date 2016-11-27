@@ -1,0 +1,369 @@
+<div>
+	<button style="margin-left: 181px;" class="btn btn-primary" (click)="addRecordsService.addRecord=false" ><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</button>
+</div><br/><br/><br/>
+
+
+<div id="exTab1" class="container" style="width:70%;">
+	  <form [formGroup]="recordform" novalidate>
+<ul  class="nav nav-pills">
+			<li class="active">
+        <a  href="#1a" class="addRec" data-toggle="tab">Deutsch</a>
+			</li>
+			<li><a href="#2a" class="addRec" data-toggle="tab" *ngIf="opentab">Englisch</a>
+			</li>
+			<li><a ><input type="checkbox" name="worldwide" id="worldwide" #cv [checked]=false
+    (change)="onChange(cv.checked)" formControlName="worldwide"/> Weltweit schalten?</a>
+			</li>
+
+		</ul>
+<hr>
+			<div class="tab-content clearfix">
+
+			  <div class="tab-pane active" id="1a">
+
+					<div class="col-sm-12 guest">
+
+					                <div ><img src="/assets/fonts/instroction.png" style="width:100%;"/></div>
+
+					                    <div class="tabbable" id="tabs" style="margin-top:50px;">
+					                        <ul class="nav nav-tabs">
+					                            <li class="active headAddRecords">
+					                                <a href="#panel-1" data-toggle="tab" style="outline:none;">Bereich</a>
+					                            </li>
+					                            <li class="headAddRecords">
+					                                <a href="#panel-2" data-toggle="tab" style="outline:none;" >Kontakt</a>
+					                            </li>
+					                            <li class="headAddRecords">
+					                                <a href="#panel-3" data-toggle="tab" style="outline:none;">Beschreibung</a>
+					                            </li>
+					                            <li class="headAddRecords">
+					                                <a href="#panel-4" data-toggle="tab" style="outline:none;">Fotos</a>
+					                            </li>
+
+					                            <li class="headAddRecords">
+					                                <a href="#panel-6" data-toggle="tab" style="outline:none;">Verfügbarkeit</a>
+					                            </li>
+					                        </ul>
+					                        <div class="tab-content">
+					                            <div class="tab-pane active" id="panel-1" >
+					                                <p>
+					                                    * Pflichtfelder
+					                                </p>
+
+					                                  <div class="col-sm-8">
+					                                <div class="form-group">
+					                                    <label for="place" >Wähle bitte eine zutreffende Kategorie aus * </label>
+					                                    <select class="form-control" id="category" formControlName="category"  name="category">
+					                                        <option value="Fliegen &amp; Fallen">Fliegen &amp; Fallen</option>
+					                                        <option value="Motorpower">Motorpower</option>
+					                                        <option value="Essen &amp; Trinken">Essen &amp; Trinken</option>
+					                                        <option value="Abenteuer &amp; Sport">Abenteuer &amp; Sport</option>
+					                                        <option value="Wellness &amp; Gesundheit">Wellness &amp; Gesundheit</option>
+					                                        <option value="Kunst, Kultur &amp; Lifestyle">Kunst, Kultur &amp; Lifestyle</option>
+					                                        <option value="Wasser &amp; Wind">Wasser &amp; Wind</option>
+					                                        <option value="Reisen">Reisen</option>
+
+					                                    </select>
+					                                    <span style="color:red"> <span *ngIf="recordform.controls.category.touched && !recordform.controls.category.valid"> Invalid Selection </span> </span>
+					                                </div>
+					                              </div>
+					                                <div class="col-sm-8">
+
+					                                <div class="form-group" *ngIf="recordform.value.category == 'Fliegen & Fallen'">
+					                                    <label for="place">Wähle bitte eine Unterkategorie*</label>
+
+					                                    <select  class="form-control" id="category" formControlName="specCategory" name="specCategory">
+					                                        <option value="Fallen &amp; Springen">Fallen &amp; Springen</option>
+					                                        <option value="Fliegen mit Motor">Fliegen mit Motor</option>
+					                                        <option value="Gleiten &amp; Schweben">Gleiten &amp; Schweben</option>
+					                                        <option value="Jets &amp; Weltraum">Jets &amp; Weltraum</option>
+					                                    </select>
+					                                    <span style="color:red"> <span *ngIf="recordform.controls.specCategory.touched && !recordform.controls.specCategory.valid">Required </span></span>
+					                                </div>
+					                              </div>
+					                                <div class="col-sm-8">
+
+					                                <div class="form-group" *ngIf="recordform.value.category === 'Motorpower'" >
+					                                    <label for="place">Wähle bitte eine Unterkategorie*</label>
+					                                    <select class="form-control" id="category" formControlName="specCategory" >
+					                                        <option value="Rennwagen">Rennwagen</option>
+					                                        <option  value="Geländewagen">Geländewagen </option>
+					                                        <option value="Traumautos" >Traumautos </option>
+					                                        <option value="Ketten &amp; Schienen" >Ketten &amp; Schienen</option>
+					                                        <option value="Motorräder" >Motorräder</option>
+					                                        <option value="Quads &amp; Spaßmobile">Quads &amp; Spaßmobile </option>
+					                                        <option value="Schneefahrzeuge">Schneefahrzeuge</option>
+					                                    </select>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.specCategory.touched && !recordform.controls.specCategory.valid">Required </span></span>
+					                                </div>
+					                              </div>
+					                                <div class="col-sm-8">
+					                                <div class="form-group" *ngIf="recordform.value.category === 'Essen & Trinken'" >
+					                                    <label for="place">Wähle bitte eine Unterkategorie*</label>
+
+					                                    <select class="form-control" id="category" formControlName="specCategory"   name="specCategory"   >
+					                                        <option value="Essen gehen">Essen gehen</option>
+					                                        <option value="Kochkurse">Kochkurse</option>
+					                                        <option value="Wein, Bier &amp; Spirituosen">Wein, Bier &amp; Spirituosen</option>
+					                                        <option value="Kaffee &amp; Schokolade">Kaffee &amp; Schokolade</option>
+					                                    </select>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.specCategory.touched && !recordform.controls.specCategory.valid">Required </span></span>
+					                                </div>
+					</div>
+					  <div class="col-sm-8">
+					                                <div class="form-group" *ngIf="recordform.value.category == 'Abenteuer & Sport'" >
+					                                    <label for="place">Wähle bitte eine Unterkategorie*</label>
+					                                    <select class="form-control" id="category" formControlName="specCategory"   name="specCategory"  >
+					                                        <option value="Sport im Sommer" >Sport im Sommer</option>
+					                                        <option  value="Sport im Winter">Sport im Winter</option>
+					                                        <option value="Action &amp; Stunts" >Action &amp; Stunts</option>
+					                                        <option  value="Wildnis">Wildnis</option>
+					                                    </select>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.specCategory.touched && !recordform.controls.specCategory.valid">Required </span></span>
+					                                </div>
+					</div>
+					  <div class="col-sm-8">
+					                                <div class="form-group" *ngIf="recordform.value.category == 'Wellness & Gesundheit'" >
+					                                    <label for="place">Wähle bitte eine Unterkategorie*</label>
+					                                    <select class="form-control" id="category" formControlName="specCategory"  name="specCategory"  >
+					                                        <option  value="Verwöhnen &amp; Erholen">Verwöhnen &amp; Erholen</option>
+					                                        <option value="Beauty &amp; Styling">Beauty &amp; Styling</option>
+					                                        <option  value="Fitness &amp; Ernährung">Fitness &amp; Ernährung</option>
+					                                        <option  value="Körper &amp; Seele">Körper &amp; Seele</option>
+					                                    </select>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.specCategory.touched && !recordform.controls.specCategory.valid">Required </span></span>
+					                                </div>
+					</div>
+					  <div class="col-sm-8">
+					                                <div class="form-group" *ngIf="recordform.value.categorys == 'Kunst, Kultur & Lifestyle'" >
+					                                    <label for="place">Wähle bitte eine Unterkategorie*</label>
+					                                    <select class="form-control" id="category" formControlName="specCategory"   name="specCategory"  >
+					                                        <option value="Vor der Kamera">Vor der Kamera</option>
+					                                        <option value="Kunst &amp; Handwerk">Kunst &amp; Handwerk</option>
+					                                        <option value="Musik &amp; Tanz">Musik &amp; Tanz</option>
+					                                        <option value="Dating, Liebe &amp; Romantik">Dating, Liebe &amp; Romantik</option>
+					                                        <option value="Lifestyle">Lifestyle</option>
+
+					                                    </select>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.specCategory.touched && !recordform.controls.specCategory.valid">Required </span></span>
+					                                </div>
+					</div>
+					  <div class="col-sm-8">
+					                                <div class="form-group" *ngIf="recordform.value.category == 'Wasser & Wind'" >
+					                                    <label for="place">Wähle bitte eine Unterkategorie*</label>
+					                                    <select class="form-control" id="category" formControlName="specCategory"   name="specCategory"  >
+					                                        <option value="Rafting &amp; Canyoning" >Rafting &amp; Canyoning</option>
+					                                        <option  value="Kanu">Kanu</option>
+					                                        <option value="Funsport mit Wasser">Funsport mit Wasser</option>
+					                                        <option value="Segeln &amp; Surfen">Segeln &amp; Surfen</option>
+					                                    </select>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.specCategory.touched && !recordform.controls.specCategory.valid">Required </span></span>
+					                                </div>
+					                              </div>
+					                                <div class="col-sm-8">
+					                                <div class="form-group" *ngIf="recordform.value.category == 'Reisen'" >
+					                                    <label for="place">Wähle bitte eine Unterkategorie*</label>
+					                                    <select class="form-control" id="category" formControlName="specCategory"   name="specCategory"  >
+					                                        <option value="Kurztrips">Kurztrips</option>
+					                                        <option  value="Erlebnisreisen">Erlebnisreisen </option>
+					                                        <option value="Hip Trip Reisen" >Hip Trip Reisen</option>
+					                                        <option  value="Alpin">Alpin</option>
+					                                    </select>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.specCategory.touched && !recordform.controls.specCategory.valid">Required </span></span>
+					                                </div>
+					                              </div>
+					                               <div class="col-sm-8" style="padding-left:0; padding-right:0;">
+					 <div class="col-sm-4">
+					                                <div class="form-group">
+					                                  <label class="control-label">Price*:</label>
+					                                      <input type="number"  class="form-control"  formControlName="price" name="price" min="0">
+					                                        <span style="color:blue"> <span *ngIf="!recordform.controls.price.valid"></span> </span>
+					                                  </div>
+					</div>
+					 <div class="col-sm-4">
+
+					                              <div class="form-group">
+					                                <label class="control-label">Anzahl*:</label>
+					                                    <input type="number"  class="form-control"  formControlName="amountProduct" min="0" name="amountProduct" >
+					  <span style="color:blue"> <span *ngIf="!recordform.controls.amountProduct.valid"></span> </span>
+					                              </div>
+					                            </div>
+
+					 <div class="col-sm-4">
+					                         <div class="form-group">
+					                              <label class="control-label">Currency*:</label>
+					                                  <select class="form-control" id="currency" formControlName="currency" name="currency" >
+					                                      <option selected value='euro'> € </option>
+					                                      <option selected value='dollar'> $ </option>
+					                                  </select>
+					                            </div>
+					                          </div>
+					                          </div>
+
+
+					                            </div><!-- end first tab-->
+
+					                            <div class="tab-pane" id="panel-2">
+
+					  <div class="col-sm-8">
+					                                    <div class="form-group">
+					                                        <label for="companyName" class="control-label">Firmenname*:</label>
+					                                        <input type="text" class="form-control" name="companyName" formControlName="companyName" >
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.companyName.touched && !recordform.controls.companyName.value">Required</span> </span>
+					                                    </div>
+					                                  </div>
+
+					      <div class="col-sm-8">
+					                                    <div class="form-group">
+					                                        <label class="control-label">E-Mail*:</label>
+					                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" name="email" formControlName="email" >
+					                                        <span style="color:red" *ngIf="recordform.controls.email.touched && !recordform.controls.email.valid"> Ungültige E-Mail Adresse.</span>
+
+					                                    </div>
+					                                  </div>
+					                                    <div class="col-sm-12" style="padding-left:0;">
+					                                    <div class="col-sm-6">
+					                                    <div class="form-group">
+
+					                                        <label class="control-label">Adresse:</label>
+					                                        <input type="text" class="form-control" name="address" formControlName="address" >
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.address.touched && !recordform.controls.address.valid">*Address Required </span> </span>
+					                                    </div>
+					                                  </div>
+					                                    <div class="col-md-3">
+					                                    <div class="form-group">
+					                                        <label class="control-label">Nr:</label>
+					                                        <input type="number" class="form-control" name="nr" min="" formControlName="nr"   id="nr" >
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.nr.touched && !recordform.controls.nr.valid">Required</span> </span>
+					                                    </div>
+					                                  </div>
+					                                </div>
+					                                    <div class="col-md-3">
+					                                    <div class="form-group">
+					                                      <label class="control-label" name="postcode">Postcode:</label>
+					                                          <input type="text" class="form-control" formControlName="postcode"  name="postcode" id="postcode">
+					                                          <span style="color:red"> <span *ngIf="recordform.controls.postcode.touched && !recordform.controls.postcode.valid">Required</span> </span>
+					                                    </div>
+					                                  </div>
+					                                  <div class="col-md-4">
+					                                    <div class="form-group">
+					                                      <label class="control-label">Stadt*:</label>
+					                                          <input type="text" class="form-control" formControlName="city"  name="city" id="city"  >
+					                                          <span style="color:red"> <span *ngIf="recordform.controls.city.touched && !recordform.controls.city.valid"> Required </span> </span>
+					                                    </div>
+					                                  </div>
+
+
+
+					<div class="col-md-8">
+					                                    <div class="form-group">
+					                                        <label class="control-label">Land*:</label>
+					                                        <select class="form-control" id="country" name="country" formControlName="country">
+					                                            <option value="DE">Deutschland</option>
+					                                            <option value="EG">Schweiz</option>
+					                                            <option value="EG">Österreich</option>
+					                                            <option value="EG">Luxemburg</option>
+
+					                                        </select>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.country.touched && !recordform.controls.country.valid"> Required</span> </span>
+					                                    </div>
+					                                  </div>
+					                            </div>
+					                                <!--end second tab-->
+
+					                            <div class="tab-pane" id="panel-3">
+					                              <div class="col-md-8">
+					                                    <div class="form-group">
+					                                        <label class="control-label">Titel*:</label>
+					                                        <input type="text" class="form-control" formControlName="title" name="title" id="title">
+					                                            <span style="color:red"> <span *ngIf="recordform.controls.title.touched && !recordform.controls.title.valid">Required</span>  </span>
+					                                    </div>
+					                                  </div>
+					                                  <div class="col-md-8">
+					                                    <div class="form-group">
+					                                        <label class="control-label">Beschreibung*:</label>
+					                                        <textarea type="text" class="form-control" formControlName="description" name="description" id="description" ></textarea>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.description.touched && !recordform.controls.description.valid">Required</span> </span>
+					                                    </div>
+					                                  </div>
+					                                  <div class="col-md-8">
+					                                    <div class="form-group">
+					                                        <label class="control-label">Leistungsbestandteil*:</label>
+					                                        <textarea type="text" class="form-control" formControlName="leistung" name="leistung" id="leistung" ></textarea>
+					                                        <span style="color:red"> <span *ngIf="recordform.controls.leistung.touched && !recordform.controls.leistung.valid">Required</span> </span>
+					                                    </div>
+					                                  </div>
+					                                  <div class="col-md-8">
+					                                <div class="form-group">
+					                                    <label class="control-label">Dauer*:</label>
+					                                    <textarea type="text" class="form-control" formControlName="dauer" name="dauer" id="dauer" ></textarea>
+					                                    <span style="color:red"> <span *ngIf="recordform.controls.dauer.touched && !recordform.controls.dauer.valid">Required</span> </span>
+					                                </div>
+					                              </div>
+					                            </div>
+
+					                            <div class="tab-pane" id="panel-4">
+
+					                                    <div id="dropzone" style="width:100%;">
+					                                        <div style="margin-top:50px;">
+					                                            Bilder reinziehen oder klicken
+					                                        </div>
+					                                        <input type="file" id="fileToUpload" name="file" accept="image/png, image/jpeg" style="width:100%" multiple="multiple" (change)="onFileSelect($event)" />
+
+					                                    </div>
+					                                    <div id="uploadSucces">
+
+					                                    </div>
+
+					                            </div>
+
+
+					                            <div class="tab-pane" id="panel-6" >
+					  <div class="col-md-8">
+					                                <div class="form-group"  >
+					                                    <label class="sr-only" for="checkin">Verfügbarkeit</label>
+					                                    <div class="input-group">
+					                                        <input type="text" class="form-control" formControlName="offerDate"  id="offerDate" placeholder="Offer Date"  >
+					                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+					                                        <span class="input-group-addon"><i id="remove" class="glyphicon glyphicon-ok"></i></span>
+					                                    </div>
+					                                </div>
+					                            </div>
+
+																			<date-picker [options]="myOptions" (dateRangeChanged)="dateRangeChanged($event)"></date-picker>
+					                          </div>
+																		<div class="col-md-12">
+																		<button type="submit" id="btnSendExperienceData" class="btn btn-primary" (click)="saveExperiences()" [disabled]="!recordform.valid || (files==='')" >
+																				Speichern
+																		</button>
+																	</div>
+					                        </div>
+
+					                    </div>
+
+
+
+
+
+					      </div>
+
+
+				</div>
+				<div class="tab-pane" id="2a">
+					<div class="col-md-8" *ngIf="opentab">
+																				<div class="form-group"  >
+																						<label class="sr-only" for="test">worldwide</label>
+																						<div class="input-group">
+																								<input type="text" class="form-control" formControlName="test"  id="test" placeholder="Offer Date"  >
+
+
+																						</div>
+																				</div>
+																		</div>
+
+				</div>
+
+
+			</div>
+			    </form>
+  </div>

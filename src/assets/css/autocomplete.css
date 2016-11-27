@@ -1,0 +1,102 @@
+
+.search_box{ float: left;position: relative;width:100%;margin: auto;}
+
+.search-input-fields{float: left;width:100%; position: relative; margin-left:10px;}
+.search-btn-wrap{float: left;width:100%;}
+
+.search_box .search-input-fields input{float:left; height: auto; padding:12px 20px 12px; border-radius:0; border: 1px solid #eeeeee; background-color:#ffffff; box-shadow: none; font-weight: 600; color:#000000; }
+.search_box .search-input-fields select{float:left;  padding:12px 20px; border-radius:0; border: 1px solid #eeeeee; border-right:none; background-color:#ffffff; box-shadow: none; font-weight: 600; }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  /* Chrome- and Safari-specific CSS here*/
+
+.search_box .search-input-fields select{float:left; -webkit-appearance: none;
+
+    background: url("/assets/fonts/selectdown.png") 96% / 15% no-repeat #eee; background-size:15px;  border-radius:0; border: 1px solid #eeeeee; background-color:#ffffff; box-shadow: none; font-weight: 600; }
+}
+.search_box .search-btn-wrap input[type="submit"]{
+    width: 100%;border-radius:0;line-height: normal;padding-bottom: 10px;padding:14px;background-color: #ff5a5f;
+    border:none;color: #ffffff;margin-bottom: 20px;
+}
+
+.search_box .location{ width:100%; float:left;position: relative;}
+
+
+.search_box .guest{ width:100%; color:#909090}
+
+.search_box select:disabled {
+    background: #f5f5f5!important;
+}
+
+div.autocomplete {
+    background-color: #f5f5f5;
+    box-shadow: 0 1px 5px rgba(50, 50, 50, 0.2);
+    left: 15px;
+    margin-top: 0;
+    position: absolute;
+    right: 15px;
+    top: 100%;
+    width: auto;
+    z-index: 999;
+}
+.search_box .location div.autocomplete{
+       left:0;
+       right: 0;
+}
+
+.search_box .location ul.autocomplete li .glyphicon{
+     display: block;
+    left: 10px;
+    position: absolute;
+    top: 13px;
+}
+
+.search_box .location ul.autocomplete li{
+    padding-left: 40px;
+    position: relative;
+    line-height: 1.7;
+}
+
+.search_box .location span.search-close-icon{
+    top:14px;
+}
+ul.autocomplete{
+    padding: 0;
+    list-style: none;
+    /*border:1px solid #c4c4c4;*/
+    margin:0;
+}
+ul.autocomplete li{border-top:1px solid #e6e6e6; padding:10px; line-height: 1; color: #999999;cursor: pointer }
+ul.autocomplete li .bold{color:#333333; font-weight: 600;display:inline-block; vertical-align: top;  line-height: 1.7; }
+ul.autocomplete li a{ text-decoration: none;color:inherit; }
+
+ul.autocomplete li  .glyphicon { font-size: 20px; line-height: 1; margin-right: 10px; color:#999999;  }
+
+ul.autocomplete li:hover{background-color:#00bce4;color:#ffffff;  }
+ul.autocomplete li:hover a{ text-decoration: none }
+ul.autocomplete li:hover .bold{ color: #ffffff; }
+ul.autocomplete li:hover .glyphicon {color:#ffffff; }
+
+.search-input-fields .col-sm-6,.search-input-fields .col-sm-3,.search-input-fields .col-sm-2, .search-input-fields .col-sm-4{
+    position: initial; padding: 0; margin-bottom: 20px;border-right:1px;
+}
+.location-inner-wrap { float: left; position: relative; width: 100%; }
+span.search-close-icon {
+    color: #00bce4;
+    cursor: pointer;
+    display: none;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: auto;
+    z-index: 999999;
+}
+
+/*.col-sm-4{padding-right:0!important;}*/
+@media (max-width: 767px){
+
+    .search-input-fields .col-sm-6,.search-input-fields .col-sm-3,.search-input-fields .col-sm-2, .search-input-fields .col-sm-4{float: left;width: 100%;position: relative; padding-right:20px; border-right:1px;}
+
+    div.autocomplete {margin-top: 0; width:100%}
+}

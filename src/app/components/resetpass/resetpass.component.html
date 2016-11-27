@@ -1,0 +1,39 @@
+<div class="col-md-9 col-md-push-0" *ngIf="allow">
+    <form name="passForm" [formGroup]="passform">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-3">
+                    <div class="panel panel-default">
+                        <div class="panel panel-heading"><h4>Password Reset</h4></div>
+                        <div class="panel panel-body">
+                            <input type="hidden" ng-init="userId = '<%- id%>' ">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td><span>Email id</span></td>
+                                    <td><input type="email" class="form-control" name='email'  formControlName='email' (blur)='searchId()' ></td>
+                                </tr>
+                                <tr>
+                                    <td><span>Password</span></td>
+                                    <td><input type="password" class="form-control" name='password'  formControlName='password' ></td>
+                                </tr>
+                                <tr>
+                                    <td><span>Confirm Password</span></td>
+                                    <td><input type="password" class="form-control" name='firstName'  formControlName='confirm_password'></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel panel-footer">
+                            <div class="container-fluid">
+                                <div class="form navbar-form navbar-right">
+                                    <button type="button" name="update" [disabled]="!passform.valid" (click)="reset()" class="btn btn-info">Reset Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

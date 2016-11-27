@@ -1,0 +1,8 @@
+.headAddRecords{
+  font-size: 25px;
+
+}
+.headAddRecords>a{color:#555555!important;}
+
+.headAddRecords.active>a{color:#fff!important;}
+.headAddRecords.active{background-color:  #8dc63f; }

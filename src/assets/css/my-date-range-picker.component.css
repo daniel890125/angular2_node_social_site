@@ -1,0 +1,502 @@
+.mydrp {
+    min-width: 100px;
+    border-radius: 2px;
+    line-height: 1.1;
+    display: table;
+    position: relative;
+    width: 610px;
+}
+
+.mydrp * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.mydrp .selector {
+    margin-top: 2px;
+    margin-left: -1px;
+    position: absolute;
+    padding: 3px;
+    border-radius: 2px;
+    z-index: 100;
+}
+
+.mydrp .selector > div {
+    width: 262px;
+    float: left;
+    padding: 20px;
+    box-sizing: content-box;
+}
+
+.mydrp .selector > div input.fromDate {
+    padding: 5px 10px;
+}
+
+.mydrp .selector > div input.toDate {
+    padding: 5px 10px;
+}
+
+.mydrp .alignselectorright {
+    right: -1px;
+}
+
+.mydrp .selectiongroup {
+    position: relative;
+    display: table;
+    border: none;
+    background-color: #FFF;
+}
+
+.mydrp .selection {
+    background-color: #FFF;
+    display: table-cell;
+    position: absolute;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 64px 0 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.mydrp .invaliddaterange {
+    background-color: #F1DEDE;
+}
+
+.mydrp ::-ms-clear {
+    display: none;
+}
+
+.mydrp .selbtngroup {
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1%;
+    display: table-cell;
+    text-align: right;
+    font-size: 0;
+}
+
+.mydrp .btnpicker,
+.mydrp .btnclear {
+    height: 100%;
+    width: 30px;
+    border: none;
+    border-left: 1px solid #AAA;
+    padding: 0px;
+    cursor: pointer;
+    outline: 0;
+    font: inherit;
+    -moz-user-select: none;
+}
+
+.mydrp .btnpicker,
+.mydrp .btnclear,
+.mydrp .headerclearbtn,
+.mydrp .footerbtn {
+    background: #FFF;
+}
+
+.mydrp .header {
+    width: 100%;
+    height: 34px;
+    margin-bottom: 1px;
+}
+
+.mydrp .header td {
+    vertical-align: middle;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.mydrp .header td:nth-child(1) {
+    font-size: 16px;
+    padding-left: 4px;
+    width: 40px;
+}
+
+.mydrp .header td > div.prev-right,
+.mydrp .header td > div.next-left {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+
+    .mydrp {
+        width: 305px;
+    }
+
+    .mydrp .header td > div.next-right,
+    .mydrp .header td > div.next-left {
+        display: none;
+    }
+    .mydrp .header td > div.prev-right {
+        display: block;
+    }
+}
+
+.mydrp .header td:nth-child(2) {
+    text-align: center;
+}
+
+.mydrp .header td:nth-child(3) {
+    font-size: 16px;
+    padding-right: 4px;
+    width: 40px;
+}
+
+.mydrp .titlearea {
+    text-align: center;
+    background-color: #FFF;
+    margin-bottom: 4px;
+}
+
+.mydrp .titleareatxt {
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.mydrp .inline {
+    position: relative;
+}
+
+.mydrp .caltable {
+    table-layout: fixed;
+    width: 100%;
+    background-color: #FFF;
+    font-size: 14px;
+}
+
+.mydrp .caltable,
+.mydrp .caltable th,
+.mydrp .caltable td {
+    border-collapse: collapse;
+    color: #003366;
+    line-height: 1.1;
+}
+
+.mydrp .caltable th,
+.mydrp .caltable td {
+    padding: 5px;
+    text-align: center;
+}
+
+.mydrp .caltable tr:not(.day-title):first-child {
+    border-top: 1px solid #f5f5f5;
+}
+
+.mydrp .caltable tr:not(.day-title):last-child {
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.mydrp .caltable th {
+    padding: 10px 5px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.mydrp .caltable td {
+    cursor: pointer;
+    font-weight: normal;
+    height: 36px;
+    border-left: 1px solid #f5f5f5;
+    border-right: 1px solid #f5f5f5;
+    font-size: 12px;
+    position: relative;
+}
+
+.mydrp .caltable td.weekend {
+    background-color: #78818b;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend) .cursor.selectedday {
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    top: 5px;
+    color: white;
+    background-color: #ed5434;
+    border-radius: 4px;
+}
+
+.mydrp .caltable tbody tr td .cursor span {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    line-height: 26px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend):hover .cursor span {
+    border: 1px solid #eb401d;
+    color: #003366;
+    background-color: white;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending:not(.range) .cursor span {
+    border: 1px solid transparent;
+    color: white;
+    background-color: transparent;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending:not(.range) .cursor {
+    background-color: rgba(237, 84, 52, 0.75);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    top: 5px;
+    color: white;
+    border-radius: 0;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending.range .cursor {
+    background-color: #eb401d;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    top: 5px;
+    color: white;
+    border-radius: 0;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending-first:not(.range) .cursor {
+    left: 5px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: rgba(237, 84, 52, 0.75);
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    top: 5px;
+    color: white;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending-first.range .cursor {
+    background-color: #eb401d;
+    right: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    left: 5px;
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    top: 5px;
+    color: white;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending-first:not(.range) .cursor span {
+    border: 1px solid transparent;
+    color: white;
+    background-color: transparent;
+    left: -5px;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending-first.range .cursor span {
+    left: -5px;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending-last:not(.range) .cursor {
+    left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: rgba(237, 84, 52, 0.75);
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    top: 5px;
+    color: white;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending-last.range .cursor {
+    background-color: #eb401d;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    left: 0;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending-last:not(.range) .cursor span {
+    border: 1px solid transparent;
+    color: white;
+    background-color: transparent;
+    right: -5px;
+}
+
+.mydrp .caltable tbody tr td:not(.weekend).pending-last.range .cursor span {
+    right: -5px;
+}
+
+.mydrp .prevmonth,
+.mydrp .nextmonth {
+    color: #cdcdd1;
+}
+
+.mydrp .disabled {
+    cursor: default !important;
+    color: #444 !important;
+    background: #FFEBE6 !important;
+}
+
+.mydrp .sundayDim {
+    opacity: 0.5;
+}
+
+.mydrp .selectmenu {
+    height: 24px;
+    width: 60px
+}
+
+.mydrp .btnpicker,
+.mydrp .btnclear,
+.mydrp .headerbtn,
+.mydrp .footerbtn,
+.mydrp .headermonthtxt,
+.mydrp .headeryeartxt,
+.mydrp .headerclearbtn,
+.mydrp .selection {
+    color: #000;
+}
+
+.mydrp .headerbtn {
+    cursor: pointer;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 5px;
+    color: #aaa;
+}
+
+.mydrp .headerclearbtn,
+.mydrp .footerbtn {
+    padding: 4px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 11px;
+    min-width: 60px;
+}
+
+.mydrp .headerclearbtn {
+    min-width: 60px;
+}
+
+.mydrp .footerbtn {
+    min-width: 80px;
+}
+
+.mydrp .btndisable {
+    cursor: default;
+    opacity: 0.5;
+}
+
+.mydrp .footerarea {
+    margin-top: 4px;
+    padding: 3px;
+    text-align: center;
+    background-color: #FAFAFA;
+}
+
+.mydrp button::-moz-focus-inner {
+    border: 0;
+}
+
+.mydrp .headermonthtxt,
+.mydrp .headeryeartxt {
+    min-width: 40px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.mydrp .headermonthtxt span,
+.mydrp .headeryeartxt span {
+    vertical-align: middle;
+}
+
+.mydrp .btnclear:focus,
+.mydrp .btnpicker:focus {
+    background: #ADD8E6;
+}
+
+.mydrp .icon-calendar,
+.mydrp .icon-cross {
+    font-size: 16px;
+}
+
+.mydrp .icon-left,
+.mydrp .icon-right {
+    color: #aaa;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.mydrp table {
+    display: table;
+}
+
+.mydrp table td {
+    padding: 0;
+}
+
+.mydrp .headerbtn:hover {
+    background-color: #ccc;
+}
+
+@font-face {
+    font-family: 'mydaterangepicker';
+    src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SAssAAAC8AAAAYGNtYXDMUczTAAABHAAAAGxnYXNwAAAAEAAAAYgAAAAIZ2x5ZmFQ1q4AAAGQAAABbGhlYWQGZuTFAAAC/AAAADZoaGVhB4IDyQAAAzQAAAAkaG10eBYAAnAAAANYAAAAIGxvY2EBdAE0AAADeAAAABJtYXhwABUAPgAAA4wAAAAgbmFtZQ5R9RkAAAOsAAABnnBvc3QAAwAAAAAFTAAAACAAAwOaAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADmBwPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAUAAAABAAEAADAAAAAQAg5gDmAuYF5gf//f//AAAAAAAg5gDmAuYF5gf//f//AAH/4xoEGgMaARoAAAMAAQAAAAAAAAAAAAAAAAAAAAAAAQAB//8ADwABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAAMAEAAAAPAA4AABAAJAA4AEwAYAB0AIgAnACwAMQA2ADsAABMRMxEjFyE1IRUDITUhFQERMxEjJRUzNSMTFTM1IzMVMzUjMxUzNSMBFTM1IzMVMzUjMxUzNSMTFTM1I0Bzc0ADAP0AQAOA/IADDXNz/ZOAgCCAgMCAgMCAgP6AgIDAgIDAgIAggIADAP1AAsBzc3P9c3NzAwD9QALAgMDA/sCAgICAgID/AICAgICAgAJAwMAAAAAAAgBwADADkANQAAQACQAANwEnARcDATcBB+kCp3n9WXl5Aqd5/Vl5MAKnef1ZeQKn/Vl5Aqd5AAABAOAAAAMgA4AAAwAAAQMBJQMgA/3DASADgPyAAcPfAAEA4AAAAyADgAADAAA3EwEF4AMCPf7gAAOA/j3fAAAAAQAAAAEAAF0/BsNfDzz1AAsEAAAAAADRxFAkAAAAANHEUCQAAAAAA8ADgAAAAAgAAgAAAAAAAAABAAADwP/AAAAEAAAAAAADwAABAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAAAAAAAAIAAAAEAABABAAAcAQAAOAEAADgAAAAAAAKABQAHgB6AJYApgC2AAAAAQAAAAgAPAAMAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA4ArgABAAAAAAABAAkAAAABAAAAAAACAAcAcgABAAAAAAADAAkAPAABAAAAAAAEAAkAhwABAAAAAAAFAAsAGwABAAAAAAAGAAkAVwABAAAAAAAKABoAogADAAEECQABABIACQADAAEECQACAA4AeQADAAEECQADABIARQADAAEECQAEABIAkAADAAEECQAFABYAJgADAAEECQAGABIAYAADAAEECQAKADQAvHZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAclZlcnNpb24gMS4wAFYAZQByAHMAaQBvAG4AIAAxAC4AMHZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAcnZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAclJlZ3VsYXIAUgBlAGcAdQBsAGEAcnZzZHBpY2tlcgB2AHMAZABwAGkAYwBrAGUAckZvbnQgZ2VuZXJhdGVkIGJ5IEljb01vb24uAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.mydrp .icon {
+    font-family: 'mydaterangepicker';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.mydrp .icon-calendar:before {
+    content: "\e600";
+}
+
+.mydrp .icon-cross:before {
+    content: "\e602";
+}
+
+.mydrp .icon-left:before {
+    content: "\e605";
+}
+
+.mydrp .icon-right:before {
+    content: "\e607";
+}
