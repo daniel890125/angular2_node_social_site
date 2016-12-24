@@ -56,11 +56,6 @@ module.exports = function(app, passport) {
                     res.redirect('#/search');
                 }
             });
-            // passport.authenticate('facebook', {
-            //         successRedirect : '#/search',
-            //         failureRedirect : '/'
-            //     })
-            //  );
 
     // twitter --------------------------------
 
